@@ -7,8 +7,8 @@ const userSchema=new mongoose.Schema(
         {
             type:String,
             enum:{
-                values:['user','admin'],
-                message:'enter valid role'
+                values:['User','Admin'],
+                message:'the role should be either User or Admin only'
             }
         },
         name:
@@ -32,7 +32,8 @@ const userSchema=new mongoose.Schema(
         },
         onDesk:
         {
-            type:Boolean
+            type:Boolean,
+            default:false
         }
     }
 )
