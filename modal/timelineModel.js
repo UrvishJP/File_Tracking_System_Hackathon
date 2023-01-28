@@ -21,13 +21,13 @@ const timelineSchema=new mongoose.Schema(
         dateOfReceiving:
         {
             type:Date,
-            validate:[validator.isDate,'please type correct mail id']
+            validate:[validator.isDate,'please type correct Date ']
         },
     
         dateOfForwarding:
         {
             type:Date,
-            validate:[validator.isDate,'please type correct mail id']
+            validate:[validator.isDate,'please type correct Date ']
         },
 
         remarks:

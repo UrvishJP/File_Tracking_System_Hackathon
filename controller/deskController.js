@@ -23,6 +23,28 @@ exports.getAllDesks=async(req,res)=>
         res.json(error)
     }
 }
+exports.assignDesk = async(req,res,next) =>{
+try{
+    const data = await Desk.findByIdAndUpdate(req.params.id,{user:req.body.user},{
+        new:true
+    })
+res.status(200).json({
+    status:"Success",
+    data
+})
+next();
+}
+catch(err){
+    res.status(400).json({
+        status:"Fail"
+    })
+}
+
+}
+
+
+
+
 
 exports.updateDesk=async (req,res,next)=>
 {
@@ -56,7 +78,7 @@ exports.updateDesk=async (req,res,next)=>
         .json(
             {
                 status:"updating failed",
-                Error:{error}
+                error:{error}
             }
         )
         next();
@@ -85,7 +107,7 @@ exports.createADesk=async (req,res)=>
         res.status(400)
         .json(
             {
-                status:"invalid request"
+                status:"not a valid request"
             }
         )
     }

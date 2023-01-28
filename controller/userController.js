@@ -1,4 +1,83 @@
 const User=require('./../modal/userModel');
+const jwt = require('jsonwebtoken')
+
+exports.Login = async (req,res,next) => {
+try {
+    const {email,password} = req.body
+    if(!email || !password ){
+       return res.status(400).json({
+            messege : "Provide Email and Password"
+        }
+        )
+   
+    }
+    const isuser = await User.findOne({email}).select("+password")
+    // console.log(isuser.id);
+   
+
+    // const userpassword =  isuser.password
+    if(!isuser || (password!=isuser.password)){
+       return res.status(400).json({
+            messege:"Incorrect Email or Password"
+        })
+    }
+ 
+    const token = jwt.sign({ id:isuser._id },process.env.JWT_SECRET,{
+        expiresIn: process.env.JWT_EXPIRES
+      })
+      const cookieOptions = {
+        expiresIn : new Date(Date.now()+ process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 *60 * 1000),
+        httpOnly:true
+      }
+      res.cookie('jwt', token, cookieOptions);
+      res.status(201).json({
+        status: 'success',
+        token,
+        data: {
+          isuser
+        }
+      })
+ next()
+
+} catch (error) {
+    res.status(400).json({
+        status:"Failed"
+    })
+}
+
+}
+exports.isLoggedIn = async (req, res, next) => {
+  
+    if(req.cookies.jwt){
+    //    console.log("hey");
+      try {
+        const decoded =  jwt.verify(
+          req.cookies.jwt,
+          process.env.JWT_SECRET
+        );
+  
+        const currentUser = await User.findById(decoded.id);
+      
+        if (!currentUser) {
+          return next();
+        }
+  
+        res.locals.user = currentUser;
+        return next();
+      }
+       catch (err) {
+        return next();
+      }
+    
+    }
+    else{
+        res.json({
+            error:"please Loggin"
+        })
+    }
+    
+  };
+
 
 exports.addUser=async (req,res)=>
 {
