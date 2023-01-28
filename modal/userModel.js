@@ -20,6 +20,11 @@ const userSchema=new mongoose.Schema(
             type:String,
             validate:[validator.isEmail,'please enter valid email address']
         },
+        password: {
+            type: String,
+            required: [true, 'Please provide a password'],
+            minlength: 8
+          },
         currentDesk:
         {
             type: mongoose.Schema.ObjectId,
