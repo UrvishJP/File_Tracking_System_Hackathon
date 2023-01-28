@@ -107,7 +107,7 @@ exports.createADesk=async (req,res)=>
         res.status(400)
         .json(
             {
-                status:"invalid request"
+                status:"not a valid request"
             }
         )
     }
