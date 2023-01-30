@@ -1,6 +1,6 @@
 const User=require('./../modal/userModel');
 
-exports.addUser=async (req,res)=>
+exports.createNewUser=async (req,res)=>
 {
     try{
         const newUser= await User.create(req.body);
