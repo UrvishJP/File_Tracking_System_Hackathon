@@ -81,6 +81,7 @@ exports.updateTimeTaken=async(req,res,next)=>{
 }
 
 exports.getAllFiles = async (req, res) => {
+    
     const docs = await File.find().populate('currentDesk').populate('previousDesk').populate('timeline');
     try {
         res.status(200)
