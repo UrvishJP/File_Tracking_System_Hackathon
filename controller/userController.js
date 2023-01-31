@@ -110,7 +110,7 @@ exports.assignDesk=async(req,res)=>{
     try{
         // console.log(req.params.id);
         // console.log(req.body);
-        var body={currentDesk:`${req.params.id}`};
+        var body={currentDesk:`${req.params.id}`,onDesk:true};
         var userId=req.body.user;
         // console.log(userId);
         // console.log(body);

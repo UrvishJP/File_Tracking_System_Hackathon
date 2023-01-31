@@ -49,7 +49,7 @@ catch(err){
 exports.updateDesk=async (req,res,next)=>
 {
     try{
-        console.log(req.body);
+        //console.log(req.body);
         const doc= await Desk.findByIdAndUpdate(req.body.deskId,{user:req.body.newUserId},
             {
                 new:true,
