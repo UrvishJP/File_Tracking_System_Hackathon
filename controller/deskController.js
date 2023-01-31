@@ -55,22 +55,8 @@ exports.updateDesk=async (req,res,next)=>
                 new:true,
                 runValidators:true
             });
-        
-        const updateUser=await User.findByIdAndUpdate(req.body.currentUserId,{ondesk:false},
-            {
-                new:true,
-                runValidators:true
-            }
-        );
-        
-        res.status(200)
-        .json(
-            {
-                status:"the transfer has been handled::",
-                data:doc
-            }
-        )
-        next();
+            if(!doc)req.status(400).json({messege:"Please Provide a valid Desk Id"})
+            else next();
     }
     catch(error)
     {
