@@ -1,6 +1,7 @@
 const File = require('./../modal/fileModel');
 const User =require('./../modal/userModel');
 const Timeline =require('./../modal/timelineModel');
+const multer=require('multer');
 
 exports.addNewFile = async (req, res) => {
     try {
@@ -63,6 +64,44 @@ exports.addNewFile = async (req, res) => {
                 erroe: (err)
             }
         )
+    }
+}
+
+const multerStorage=multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,'filesCluster/files');
+    },
+    filename:(req,file,cb)=>{
+        const extension=file.mimetype.split('/')[1];
+        cb(null,`file-${Date.now()}.${extension}`);
+    }
+});
+
+const upload=multer({storage:multerStorage});
+
+exports.multerFileUpload=upload.single('file');
+
+exports.uploadFile=async(req,res)=>{
+    try{
+        // console.log(req.body.fileId);
+        // console.log(req.file);
+        const data={
+            file:req.file.filename
+        }
+        const uploadedFile=await File.findByIdAndUpdate(req.body.fileId,data,{
+            new: true,
+            runValidators: true
+        })
+        res.status(200).json({
+            status:'file received and attached',
+            data:uploadedFile
+        });
+    }
+    catch(err){
+        res.status(404).json({
+            status:'file upload failed',
+            error:err
+        })
     }
 }
 

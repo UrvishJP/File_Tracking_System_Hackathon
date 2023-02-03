@@ -43,7 +43,7 @@ const fileSchema=new mongoose.Schema(
             type:String,
             enum:{
                 values:['Physical','Digital'],
-                message:'Enter a valid Mode(Digitalor Physical)'
+                message:'Enter a valid Mode(Digital or Physical)'
             }
         },
 
@@ -74,6 +74,19 @@ const fileSchema=new mongoose.Schema(
                 type:String,
                 validate:[validator.isEmail,'enter a valid Email Id']
             }
+        },
+
+        file:{
+            type:String
+        },
+
+        status:{
+            type:String,
+            enum:{
+                values:['In Process','Closed'],
+                message:'Enter a valid file status (In Process or Closed)'
+            },
+            default:'In Process'
         }
     }
 )
