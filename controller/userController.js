@@ -41,7 +41,8 @@ try {
 
 } catch (error) {
     res.status(400).json({
-        status:"Failed"
+        status:"Failed",
+        err:error
     })
 }
 

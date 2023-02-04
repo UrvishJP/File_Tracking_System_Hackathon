@@ -10,5 +10,6 @@ router.post('/addNewFile',fileController.addNewFile);
 router.post('/uploadfile',fileController.multerFileUpload,fileController.uploadFile);
 router.patch('/addExistingFile/:id',fileController.addExistingFile);
 router.post('/sendFile/:id',fileController.sendFile);
+router.get('/fileFilter',fileController.fileFilters);
 
 module.exports = router;

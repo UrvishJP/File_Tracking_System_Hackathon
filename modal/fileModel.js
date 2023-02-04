@@ -25,6 +25,28 @@ const fileSchema=new mongoose.Schema(
             ref:'Desk'
         },
 
+        currentBranch:
+        {
+            type:String,
+            enum:{
+                values:['Revenue','Panchayat','Development','Construction','Irrigation','Statistics','Health','Education','Animal Husbandry','Social welfare','Co-Operation','Agriculture','ICDS','Family Welfare','Ayurveda','Malaria','Accounting','Establishment','General','Mission Mangalam','MGNREGA','IRD','Free Period','SBM','Other'], 
+                message:'Enter valid Department',
+            }
+        },
+
+        currentOffice:
+        {
+            type:String,
+        },
+
+        currentUserId:{
+            type:String
+        },
+
+        currentUserName:{
+            type:String
+        },
+
         previousDesk:
         {
             type: mongoose.Schema.ObjectId,

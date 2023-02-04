@@ -31,6 +31,10 @@ exports.addNewFile = async (req, res) => {
             subject:req.body.subject,
             currentDesk:user.currentDesk,
             previousDesk:user.currentDesk,
+            currentUserId:user.id,
+            currentUserName:user.name,
+            currentOffice:user.currentDesk.office,
+            currentBranch:user.currentDesk.branch,
             mode:req.body.mode,
             creationDate:creationDate,
             expectedDate:mydate,
@@ -226,6 +230,10 @@ exports.sendFile=async(req,res)=>{
         var updatingData={
             currentDesk:user2.currentDesk,
             previousDesk:user1.currentDesk,
+            currentBranch:user2.currentDesk.branch,
+            currentOffice:user2.currentDesk.office,
+            currentUserId:user2.id,
+            currentUserName:user2.name,
             dateOfLastForward:currentDate,
             timeline:updatedTimeline
         }
@@ -244,6 +252,26 @@ exports.sendFile=async(req,res)=>{
     catch(err){
         res.status(400).json({
             message:err
+        })
+    }
+}
+
+exports.fileFilters=async(req,res)=>{
+    try{
+        // console.log(req.query);
+
+        const files=await File.find(req.query);
+
+        res.status(200).json({
+            message:'files filtered',
+            results:files.length,
+            files:files
+        })
+    }
+    catch(err){
+        res.status(400).json({
+            message:'request failed',
+            error:err
         })
     }
 }
