@@ -3,13 +3,14 @@ const jwt = require('jsonwebtoken')
 
 exports.Login = async (req,res,next) => {
 try {
-    const {email,password} = req.body
+    console.log('req.body');
+    const {email,password,role} = req.body
     if(!email || !password ){
-       return res.status(400).json({
-            messege : "Provide Email and Password"
-        }
-        )
-   
+        res.status(200).json({
+            status:"fail",
+            messege : "Provide both Email and Password"
+        })
+        return next();
     }
     const isuser = await User.findOne({email}).select("+password")
     // console.log(isuser.id);
@@ -17,9 +18,21 @@ try {
 
     // const userpassword =  isuser.password
     if(!isuser || (password!=isuser.password)){
-       return res.status(400).json({
-            messege:"Incorrect Email or Password"
+        res.status(200).json({
+            status:"fail",
+            messege:"user and password does not match"
         })
+        return next();
+    }
+
+    if(isuser.role != role){
+            res.status(200).json(
+            {
+                status:"fail",
+                messege:"incorrect role"
+            }
+        )
+        return next();
     }
  
     const token = jwt.sign({ id:isuser._id },process.env.JWT_SECRET,{
@@ -64,6 +77,7 @@ exports.isLoggedIn = async (req, res, next) => {
         }
   
         res.locals.user = currentUser;
+        req.user=currentUser;
         return next();
       }
        catch (err) {
@@ -73,7 +87,7 @@ exports.isLoggedIn = async (req, res, next) => {
     }
     else{
         res.json({
-            error:"please Loggin"
+            error:"please Logging"
         })
     }
     

@@ -1,0 +1,25 @@
+header
+    nav#navbarBlur.navbar.navbar-main.navbar-expand-lg.px-0.mx-4.shadow-none.border-radius-xl(data-scroll='true')
+        .container-fluid.py-1.px-3
+            h5 Dashboard
+            #navbar.collapse.navbar-collapse.mt-sm-0.mt-2.me-md-0.me-sm-4
+                .ms-md-auto.pe-md-3.d-flex.align-items-center
+                        ul.navbar-nav.justify-content-end
+                            li.nav-item.dropdown.pe-2(style='margin:10px')
+                                a#dropdownMenuButton.nav-link.text-body.p-0.position-relative.show(href='javascript:;' data-bs-toggle='dropdown' aria-expanded='false')
+                                    i.material-icons.cursor-pointer notifications
+                                ul.dropdown-menu.dropdown-menu-end.p-2.me-sm-n4(aria-labelledby='dropdownMenuButton' data-bs-popper='static')
+                                    li.mb-2
+                                        a.dropdown-item.border-radius-md(href='javascript:;')
+                                            .d-flex.align-items-center.py-1
+                                                .ms-2
+                                                    h6.text-sm.font-weight-normal.my-auto Notification!!!
+                                    li.mb-2
+                                        a.dropdown-item.border-radius-md(href='javascript:;')
+                                            .d-flex.align-items-center.py-1
+                                                .ms-2
+                                                    h6.text-sm.font-weight-normal.my-auto Notification!!!
+                            li.nav-item.d-flex.align-items-center
+                                a.nav-link.text-body.font-weight-bold.px-0(href='')
+                                    i.fa.fa-user.me-sm-1
+                                    span.d-sm-inline.d-none=user.name

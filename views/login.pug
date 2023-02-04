@@ -1,0 +1,44 @@
+extends base
+
+block heading
+  section.vh-100
+    .container-fluid.h-custom
+      .row.d-flex.justify-content-center.align-items-center.h-100
+        .col-md-9.col-lg-6.col-xl-5
+          div
+            img.emblemimage.img-fluid(src='/assets/img/download (1).png' alt='Sample image' width='150' height='300')
+          .titleDDO
+            h1(style='font-size:40px;font-weight: bolder;') District Panchayat
+            h1(style='font-weight:bolder ;') Patan
+        .col-md-8.col-lg-6.col-xl-4.offset-xl-1
+          form.form
+            .d-flex.flex-row.align-items-center.justify-content-center.justify-content-lg-start
+              p.lead.fw-normal.mb-0.me-3 Login
+            .divider.d-flex.align-items-center.my-4
+            // Email input
+            .form__group.form-outline.mb-4
+              input#email.form-control.form-control-lg(type='email' placeholder='Enter a valid email address')
+              label.form-label(for='email') Email address 
+            // Password input
+            .form__group.form-outline.mb-3
+              input#password.form-control.form-control-lg(type='password' placeholder='Enter password')
+              label.form-label(for='password') Password
+            .form__group.form-outline.mb-3
+              select#role.form-select.form-select-lg.mb-3(aria-label='.form-select-lg example' name='role')
+                option(value='User') Employee
+                option(value='Admin') HigherAuthority
+            .form__group.form-outline.mb-3
+              button.btn.btn-primary.col-12(type='submit') Login
+            .text-center.text-lg-start.mt-4.pt-2
+              div
+                span(style='width: 50px')
+                  | For applicant, track your file here :
+                  button.btn.btn-outline-success
+                    a(href='/applicant' style='text-decoration: none; color:black;')
+                      | Click
+    .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-between.py-4.px-4.px-xl-5.bg-dark
+      // Copyright
+      .text-white.mb-3.mb-md-0
+        .footer-div-1 Content owned by District Administration
+        .footer-div-2 Developed by Milan and Team
+        div All Rights Reserved
