@@ -1,0 +1,156 @@
+extends base
+
+block sideBar
+    aside#sidenav-main.sidenav.navbar.navbar-vertical.navbar-expand-xs.border-0.border-radius-xl.my-3.fixed-start.ms-3.bg-gradient-dark
+        .sidenav-header
+          i#iconSidenav.fas.fa-times.p-3.cursor-pointer.text-white.opacity-5.position-absolute.end-0.top-0.d-none.d-xl-none(aria-hidden='true')
+          a.navbar-brand.m-0(h='' target='_blank')
+            // <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+            span.ms-1.font-weight-bold.text-white District Panchayat-Patan
+        hr.horizontal.light.mt-0.mb-2
+        #sidenav-collapse-main.collapse.navbar-collapse.w-auto
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/digitalDesk')
+                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+                  i.material-icons.opacity-10 dashboard
+                span.nav-link-text.ms-1 Digital Desk
+            li.nav-item
+              a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/physicalDesk')
+                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+                  i.material-icons.opacity-10 table_view
+                span.nav-link-text.ms-1 Physical Desk
+            li.nav-item
+              a.nav-link.text-white.active.bg-gradient-primary(href='/adminDashboard/trackFiles')
+                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+                  i.material-icons.opacity-10 receipt_long
+                span.nav-link-text.ms-1 Track a file
+            li.nav-item
+              a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/createUser')
+                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+                  i.large.material-icons person_add
+                span.nav-link-text.ms-1 Create a User
+            li.nav-item
+              a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/handleTransfer')
+                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+                  i.large.material-icons swap_horiz
+                span.nav-link-text.ms-1 Handle Transfer
+block heading 
+    include _header
+block content
+    .container-fluid.py-4
+        .row
+          .col-xl-3.col-sm-6.mb-xl-0.mb-4
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-dark.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-box-arrow-in-right(xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' viewbox='0 0 16 16')
+                      path(fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z')
+                      path(fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                .text-end.pt-1
+                  h4.mb-0 Search by File ID
+              hr.dark.horizontal.my-0
+              .card-footer.p-3
+                form.trackByIdForm
+                  .form-group
+                    label.form-label Enter the ID here
+                    .input-group.input-group-outline
+                      input#idBox.form-control(type='text')
+                  .card-footer.p-2
+                    button.btn.bg-gradient-dark.mb-0(type='submit') Submit
+          .col-xl-6.col-sm-6
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-info.shadow-info.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-search(xmlns='http://www.w3.org/2000/svg' width='27' height='27' fill='currentColor' viewbox='0 0 16 16')
+                      path(d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z')
+                .text-end.pt-1
+                  h4.mb-0 Search a File
+              hr.dark.horizontal.my-0
+              .container
+                form.trackFileFilters
+                  .form-group
+                    .row.pb-3
+                      label.form-label.mt-4 select office or branch for which you need files
+                      .col-7
+                        select#officeFilter.form-select(aria-label='Default select example')
+                          option(selected value='NA') No office
+                          option(value='District Panchayat, Patan') District Panchayat, Patan
+                          option(value='Taluka Panchayat, Chanasma') Taluka Panchayat, Chanasma
+                          option(value='Taluka Panchayat, Harij') Taluka Panchayat, Harij
+                          option(value='Taluka Panchayat, Patan') Taluka Panchayat, Patan
+                          option(value='Taluka Panchayat, Radhanpur') Taluka Panchayat, Radhanpur
+                          option(value='Taluka Panchayat, Sami') Taluka Panchayat, Sami
+                          option(value='Taluka Panchayat, Santalpur') Taluka Panchayat, Santalpur
+                          option(value='Taluka Panchayat, Saraswati') Taluka Panchayat, Saraswati
+                          option(value='Taluka Panchayat, Shankheshvar') Taluka Panchayat, Shankheshvar
+                          option(value='Taluka Panchayat, Siddhpur') Taluka Panchayat, Siddhpur
+                      .col-4.mx-3
+                        select#deptFilter.form-select(aria-label='Default select example')
+                          option(selected value='NA') No Branch
+                          option(value='Revenue') Revenue
+                          option(value='Irrigation') Irrigation
+                          option(value='Accounting') Accounting
+                          option(value='Health') Health
+                          option(value='Agriculture') Agriculture
+                          option(value='Education') Education
+                          option(value='Panchayat') Panchayat
+                          option(value='Development') Development
+                          option(value='Construction') Construction
+                          option(value='Statistics') Statistics
+                          option(value='Animal Husbandry') Animal Husbandry
+                          option(value='Social Welfare') Social Welfare
+                          option(value='Cooperation') Cooperation
+                          option(value='ICDS') ICDS
+                          option(value='Family Welfare') Family Welfare
+                          option(value='Ayurveda') Ayurveda
+                          option(value='Malaria') Malaria
+                          option(value='Establishment') Establishment
+                          option(value='General') General
+                          option(value='Mission Mangalam') Mission Mangalam
+                          option(value='MGNREGA') MGNREGA
+                          option(value='IRD') IRD
+                          option(value='Free Period') Free Period
+                          option(value='SBM') SBM
+                          option(value='Other') Other
+                    //- hr.dark.horizontal.my-1
+                    .card-footer.p-2
+                      button.btn.bg-gradient-dark.mb-0(type='submit') Submit
+          .col-2
+            form.removeFilters
+              button#removeFilter.btn.bg-gradient-success.mb-1(type='submit') remove filters
+        // ---------------------------------------------------------------------------------------------
+        .row.mt-4
+        // -----------LIST      ---------------------------------------------------------------------------------
+        .row.mb-4
+          .card
+            .card-header.pb-0
+              .row
+                .col-lg-6.col-7
+                  h6 Result of your Search
+                .col-lg-6.col-5.my-auto.text-end
+            // -----------------------------------------------------------------------------
+            .card-body.px-0.pb-2
+                .table-responsive
+                        table.table.align-items-center.mb-0
+                            thead(style='width: 597px;')
+                                tr
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' width='150' style='width: 404px; font-size: 2px;') Subject
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 252px;') FileId
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 152px;') current Office
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7.text-center(scope='col' style='width: 282px;') Details
+                            tbody
+                                each file in files
+                                    tr.text-dark
+                                        th(scope='Filename')= file.subject
+                                        th= file.id
+                                        th= file.currentOffice
+                                        th.align-middle.text-center.text-sm
+                                            a.nav-link(href='/trackfile/'+file._id)
+                                                div
+                                                    button.btn.btn-outline-dark(type='button')
+                                                        svg.bi.bi-info-circle-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                            path(d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z')
+        footer.footer.py-4

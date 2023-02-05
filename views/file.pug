@@ -1,0 +1,113 @@
+extends base
+
+mixin timelineBlock(timeline)
+  .row.align-items-center.connecting-lines.d-flex
+    - if(timeline.status==='Approved')
+          .col-2.text-center.full.d-inline-flex.justify-content-center.align-items-center
+            .circle.font-weight-bold.btn-success
+              svg.bi.bi-check-circle-fill(xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' viewbox='0 0 16 16')
+                path(d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z')
+    - if(timeline.status==='Rejected')
+          .col-2.text-center.full.d-inline-flex.justify-content-center.align-items-center
+            .circle.font-weight-bold.btn-danger
+              svg.bi.bi-x-circle-fill(xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' viewbox='0 0 16 16')
+                path(d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z')
+    .col-10
+      li.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-300.border-radius-lg
+        .col-12.d-flex.flex-column
+          h6.mb-3.text-sm= timeline.desk.user.name
+          span.text-xs
+            | Office:   
+            span.text-dark.ms-sm-2.font-weight-bold= timeline.desk.office
+          span.text-xs
+            | Branch: 
+            span.text-dark.ms-sm-2.font-weight-bold= timeline.desk.branch
+          span.mb-2.text-xs
+            | Status: 
+            span.text-dark.ms-sm-2.font-weight-bold= timeline.status
+          span.mb-2.text-xs
+            | Date of Receiving: 
+            span.text-dark.ms-sm-2.font-weight-bold= timeline.dateOfReceiving.toLocaleString('en-US')
+          span.text-xs
+            | Date of Forwarding: 
+            span.text-dark.ms-sm-2.font-weight-bold=timeline.dateOfForwarding.toLocaleString('en-US')
+          span.text-xs
+            | Remarks/Comments: 
+            span.text-dark.ms-sm-2.font-weight-bold= timeline.remarks
+          button.btn.btn-dark(type='submit' style='width:100px ;\
+          margin-top:15px') Mail
+block heading
+    nav#navbarBlur.navbar.navbar-main.navbar-expand-lg.px-0.mx-4.shadow-none.border-radius-xl(data-scroll='true')
+        .container-fluid.py-1.px-3
+            nav(aria-label='breadcrumb')
+                h3.font-weight-bolder.mb-0 File Details
+    .container-fluid.py-4
+        .row
+            .col-3.md-2.mt-4
+                .card
+                    .card-header.pb-2.px-3
+                        h6.mb-0 Info
+                    .card-body.pt-4.p-3
+                        ul.list-group
+                            li.list-group-item.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-200.border-radius-lg
+                                .d-flex.flex-column
+                                    span.mb-2.text-xs File ID: 
+                                        span.text-dark.font-weight-bold.ms-sm-2=file.id
+                                    span.mb-2.text-xs Date of Entry: 
+                                        span.text-dark.ms-sm-2.font-weight-bold=file.creationDate.toLocaleString('en-US')
+                                    span.mb-2.text-xs Mode: 
+                                        span.text-dark.ms-sm-2.font-weight-bold=file.mode
+                                    span.mb-2.text-xs Current Holder: 
+                                        span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.user.name
+                                    span.mb-2.text-xs Current office: 
+                                        span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.office
+                                    span.mb-2.text-xs Current desk: 
+                                        span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.designation
+            .col-md-3.mt-4
+                .card
+                    .card-header.pb-2.px-3
+                        h6.mb-0 Preview
+                    img.card(src='/assets/img/PDFpreviewImage.jpg' alt='logo')
+                    button.btn.bg-gradient-dark(style='margin-top: 15px;') View the file
+                    button.btn.bg-gradient-dark(style='margin-top: 10px;') Download the file
+            .col-md.mt-4.card(style='width: 370px;\
+                position: relative;\
+                z-index: 1;')
+              .card-header.pb-2.px-3
+                h6.mb-0 Submit Your Work
+              .card-body.pt-1.p-2
+                ul.list-group
+                  li.list-group-item.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-200.border-radius-lg
+                    form.d-flex.flex-column
+                      .container-fluid
+                        .row
+                          .col
+                            input(type='text' placeholder='Office Name' style='    margin-bottom: 15px;')
+                            input(type='text' placeholder='Department')
+                            div.mt-4
+                              label File Status:
+                              select
+                                option(value='rigatoni') Approve
+                                option(value='dave') Reject
+                          .col
+                            div
+                              label(for='') Comment:
+                              textarea(name='' id='' cols='20' rows='3')
+                            .px-3
+                              button.btn.bg-gradient-dark Merge File
+                            .px-3
+                              button.btn.bg-gradient-dark Submit File
+        .row
+          hr
+          hr
+        .row
+          .col-mx-10
+            .card.h-100.mb-4
+              .card-header.pb-2.px-3
+                .row
+                  .col-md-6
+                    h6.mb-0 File&apos;s Timeline
+              div
+                .container
+                  each timeline in file.timeline
+                    +timelineBlock(timeline)

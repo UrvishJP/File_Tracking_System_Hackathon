@@ -3,7 +3,7 @@ const passId=async (fileId)=>{
         alert('enter file ID please');
     }
     else{
-        location.assign(`/adminDashboard/trackFiles/?fileId=${fileId}`);
+        location.assign(`/trackFile/${fileId}`);
     }
 }
 
@@ -12,13 +12,13 @@ const queryFilter=async(office,department)=>{
         location.assign(`/adminDashboard/trackFiles/?currentOffice=${office}`);
     }
     if(department!='NA' && office==='NA'){
-        location.assign(`/adminDashboard/trackFiles/?department=${department}`);
+        location.assign(`/adminDashboard/trackFiles/?currentBranch=${department}`);
     }
     if(office!='NA' && department!='NA'){
-        location.assign(`/adminDashboard/trackFiles/?department=${department}&currentOffice=${office}`);
+        location.assign(`/adminDashboard/trackFiles/?currentBranch=${department}&currentOffice=${office}`);
     }
     if(office==='NA' && department==='NA'){
-        alert(`please select office or department and then submit`);
+        alert(`please select office or branch and then submit`);
     }
 }
 

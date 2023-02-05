@@ -144,7 +144,10 @@ exports.getAllFiles = async (req, res) => {
 
 exports.getOneFile = async (req, res) => {
     try {
-        let query = File.findById(req.params.id).populate('currentDesk').populate('previousDesk').populate('timeline');
+        let query = File.findById(req.params.id).populate('currentDesk').populate('previousDesk').populate({
+            path:'timeline',
+            populate:({path:'desk',populate:{path:'user'}})
+        });
         const doc = await query;
         if (doc) {
             return res.status(200)

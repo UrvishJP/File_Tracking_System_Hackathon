@@ -29,7 +29,7 @@ const fileSchema=new mongoose.Schema(
         {
             type:String,
             enum:{
-                values:['Revenue','Panchayat','Development','Construction','Irrigation','Statistics','Health','Education','Animal Husbandry','Social welfare','Co-Operation','Agriculture','ICDS','Family Welfare','Ayurveda','Malaria','Accounting','Establishment','General','Mission Mangalam','MGNREGA','IRD','Free Period','SBM','Other'], 
+                values:['Revenue','Panchayat','Development','Construction','Irrigation','Statistics','Health','Education','Animal Husbandry','Social Welfare','Cooperation','Agriculture','ICDS','Family Welfare','Ayurveda','Malaria','Accounting','Establishment','General','Mission Mangalam','MGNREGA','IRD','Free Period','SBM','Other'], 
                 message:'Enter valid Department',
             }
         },

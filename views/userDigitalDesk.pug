@@ -4,36 +4,21 @@ block sideBar
     aside(class='sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark' id='sidenav-main')
         div(class='sidenav-header')
             i(class='fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none' aria-hidden='true' id='iconSidenav')
-            a(class='navbar-brand m-0' href='#' target='_blank')
+            a(class='navbar-brand m-0' href='' target='_blank')
                 span(class='ms-1 font-weight-bold text-white') District Panchayat-Patan
         hr(class='horizontal light mt-0 mb-2')
         div(class='collapse navbar-collapse  w-auto' id='sidenav-collapse-main')
             ul(class='navbar-nav')
                 li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/digitalDesk')
+                    a(class='nav-link text-white active bg-gradient-primary' href='/userDashboard/digitalDesk')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') dashboard 
                         span(class='nav-link-text ms-1') Digital Desk
                 li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-primary' href='/adminDashboard/physicalDesk')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/userDashboard/physicalDesk')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') table_view 
                         span(class='nav-link-text ms-1') Physical Desk
-                li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/trackFiles')
-                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') receipt_long
-                        span(class='nav-link-text ms-1') Track a file
-                li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/createUser')
-                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') person_add 
-                        span(class='nav-link-text ms-1') Create a User
-                li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
-                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') swap_horiz
-                        span(class='nav-link-text ms-1') Handle Transfer
 block heading
     include _header
 block content
@@ -70,31 +55,6 @@ block content
                             .modal-footer(style='height: 60px;')
                               button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
                               button.btn.btn-primary(type='button' data-bs-dismiss='modal') Add
-            .col-xl-3.col-sm-6.mb-xl-0.mb-4
-                .card
-                  .card-header.p-3.pt-2
-                    .icon.icon-lg.icon-shape.bg-gradient-success.shadow-success.text-center.border-radius-xl.mt-n4.position-absolute
-                      i.material-icons.opacity-10
-                        svg.bi.bi-file-earmark-arrow-down-fill(xmlns='http://www.w3.org/2000/svg' width='27' height='27' fill='currentColor' viewbox='0 0 16 16')
-                          path(d='M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0z')
-                    .text-end.pt-1(style='height: 50px;')
-                      button.btn.text-capitalize(type='button' data-bs-toggle='modal' data-bs-target='#modal2')
-                        h4.mb-0
-                          h4.mb-0 Add Existing File
-                      #modal2.modal.fade(tabindex='-1' aria-labelledby='modal2' aria-hidden='true')
-                        .modal-dialog
-                          .modal-content(style='height: 250px;width: 606px;')
-                            .modal-header(style='height:50px;')
-                              h5#exampleModalLabel1.modal-title Add a File
-                              button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close' style='height: 13px;width: 13px;color: black;')
-                            .modal-body
-                              form
-                                .mb-3(style='padding-top: 6px;')
-                                  label.col-form-label(for='message-text' style='font-size: 25px; padding:0px;float: left;') File ID:
-                                  input#message-text.form-control(style='border:2px solid; margin-top: 28px;' placeholder='Enter the ID here....')
-                            .modal-footer
-                              button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
-                              button.btn.btn-primary(type='button' data-bs-dismiss='modal') Add
         // ---------------------------------------------------------------------------------------------
         .row.mt-4
         // -----------LIST      ---------------------------------------------------------------------------------
@@ -121,9 +81,9 @@ block content
                                 each file in files
                                     tr.text-dark
                                         th(scope='Filename')= file.subject
-                                        th.Sender=file.currentHolder
-                                        th= file.dateOfEntry.toLocaleString('en-US')
-                                        th= file.fileId
+                                        th.Sender=file.previousDesk.designation
+                                        th= file.dateOfLastForward.toLocaleString('en-US')
+                                        th= file.id
                                         th.align-middle.text-center.text-sm
                                             a.nav-link(href='/fileDetail/'+file.id)
                                                 div
