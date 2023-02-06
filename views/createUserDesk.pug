@@ -28,7 +28,7 @@ block sideBar
                     a(class='nav-link text-white active bg-gradient-primary' href='/adminDashboard/createUser')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') person_add 
-                        span(class='nav-link-text ms-1') Create a User
+                        span(class='nav-link-text ms-1') Create/Add
                 li(class='nav-item')
                     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
@@ -37,18 +37,170 @@ block sideBar
 block heading 
     include _header
 block content
-    .main-block.card
-        //- .left-part
-        form
-          h1 Create A User
-          .info
-            input.inputtogive(type='text' name='name' placeholder='Full name')
-            input.inputtogive(type='text' name='name' placeholder='User Id')
-            input.inputtogive(type='text' name='name' placeholder='Email Id')
-            input.inputtogive(type='text' name='name' placeholder='Office')
-            input.inputtogive(type='text' name='name' placeholder='Department')
-            input.inputtogive(type='text' name='name' placeholder='Password')
-            select#roleLogin.form-select.form-select-lg.mb-3.inputtogive(aria-label='.form-select-lg example' name='roleLogin' style='border:2px solid black; width: 648px; margin-left: 15px; height: 47px; border-radius: 5px; color: black;')
-              option(style='font-size: 18px;') User
-              option(style='font-size: 18px;') Admin
-          button.active.bg-gradient-primary.btn.mx-3(type='submit' href='/') Create
+    .container-fluid.py-4
+        .row
+          .col-xl-8.col-sm-6.mb-xl-0.mb-4
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-secondary.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-box-arrow-in-right(xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' viewbox='0 0 16 16')
+                      path(fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z')
+                      path(fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                .text-end.pt-1
+                  h4.mb-0 Create A User
+              hr.dark.horizontal.my-0
+              .card-body.p-3
+                form.trackByIdForm
+                    .form-group
+                        .row
+                            .col
+                                label.form-label Enter the Name of user
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                            .col
+                                label.form-label Enter the Email id of user
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                        .row
+                            .col
+                                label.form-label Enter the password
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                            .col
+                                label.form-label Select the role of User
+                                .input-group.input-group-outline
+                                  select#officeFilter.form-select(aria-label='Default select example')
+                                    option(selected value='User') Employee
+                                    option(value='Admin') Higher Authority
+                    .card-footer.p-2
+                        button.btn.bg-gradient-secondary.mb-0(type='submit') Create
+        .row.mt-4
+          .col-xl-8.col-sm-6.mb-xl-0.mb-4
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-success.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-box-arrow-in-right(xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' viewbox='0 0 16 16')
+                      path(fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z')
+                      path(fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                .text-end.pt-1
+                  h4.mb-0 Add a new Desk
+              hr.dark.horizontal.my-0
+              .card-body.p-3
+                form.trackByIdForm
+                    .form-group
+                        .row
+                            .col
+                                label.form-label Enter the Office of Desk
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                            .col
+                                label.form-label Enter the Designation/post of Desk
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                        .row
+                            .col
+                                label.form-label Select the Branch of Desk
+                                .input-group.input-group-outline
+                                  select#deptFilter.form-select(aria-label='Default select example')
+                                    option(value='Revenue') Revenue
+                                    option(value='Irrigation') Irrigation
+                                    option(value='Accounting') Accounting
+                                    option(value='Health') Health
+                                    option(value='Agriculture') Agriculture
+                                    option(value='Education') Education
+                                    option(value='Panchayat') Panchayat
+                                    option(value='Development') Development
+                                    option(value='Construction') Construction
+                                    option(value='Statistics') Statistics
+                                    option(value='Animal Husbandry') Animal Husbandry
+                                    option(value='Social Welfare') Social Welfare
+                                    option(value='Cooperation') Cooperation
+                                    option(value='ICDS') ICDS
+                                    option(value='Family Welfare') Family Welfare
+                                    option(value='Ayurveda') Ayurveda
+                                    option(value='Malaria') Malaria
+                                    option(value='Establishment') Establishment
+                                    option(value='General') General
+                                    option(value='Mission Mangalam') Mission Mangalam
+                                    option(value='MGNREGA') MGNREGA
+                                    option(value='IRD') IRD
+                                    option(value='Free Period') Free Period
+                                    option(value='SBM') SBM
+                                    option(value='Other') Other
+                    .card-footer.p-2
+                        button.btn.bg-gradient-success.mb-0(type='submit') Create
+        .row.mt-4
+          .col-xl-8.col-sm-6.mb-xl-0.mb-4
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-primary.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-box-arrow-in-right(xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' viewbox='0 0 16 16')
+                      path(fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z')
+                      path(fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                .text-end.pt-1
+                  h4.mb-0 Assign User to a Desk
+              hr.dark.horizontal.my-0
+              .card-body.p-3
+                form.trackByIdForm
+                    .form-group
+                        .row
+                            .col
+                                label.form-label Enter the User id
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                            .col
+                                label.form-label Enter the Desk id
+                                .input-group.input-group-outline
+                                  input#idBox.form-control(type='text')
+                    .card-footer.p-2
+                        button.btn.bg-gradient-primary.mb-0(type='submit') Assign
+    //- .main-block.card
+    //-     //- .left-part
+    //-     form
+    //-       h1 Create A User
+    //-       .info
+    //-         input.inputtogive(type='text' name='name' placeholder='Full name')
+    //-         input.inputtogive(type='text' name='name' placeholder='Email Id')
+    //-         input.inputtogive(type='text' name='name' placeholder='Password')
+    //-         select#roleLogin.form-select.form-select-lg.mb-3.inputtogive(aria-label='.form-select-lg example' name='roleLogin' style='border:2px solid black; width: 648px; margin-left: 15px; height: 47px; border-radius: 5px; color: black;')
+    //-           option(style='font-size: 18px;' value='User') Employee
+    //-           option(style='font-size: 18px;' value='Admin') Higher Authority
+    //-       button.active.bg-gradient-primary.btn.mx-3(type='submit' href='/') Create
+    //- .main-block.card
+    //-     //- .left-part
+    //-     form
+    //-       h1 Add A Post/Designation
+    //-       .info
+    //-         input.inputtogive(type='text' name='name' placeholder='Office')
+    //-         input.inputtogive(type='text' name='name' placeholder='Designation')
+    //-         select#roleLogin.form-select.form-select-lg.mb-3.inputtogive(aria-label='.form-select-lg example' name='roleLogin' style='border:2px solid black; width: 648px; margin-left: 15px; height: 47px; border-radius: 5px; color: black;')
+    //-             option(style='font-size: 15px;' value='Revenue') Revenue
+    //-             option(style='font-size: 15px;' value='Irrigation') Irrigation
+    //-             option(style='font-size: 15px;' value='Accounting') Accounting
+    //-             option(style='font-size: 15px;' value='Health') Health
+    //-             option(style='font-size: 15px;' value='Agriculture') Agriculture
+    //-             option(style='font-size: 15px;' value='Education') Education
+    //-             option(style='font-size: 15px;' value='Panchayat') Panchayat
+    //-             option(style='font-size: 15px;' value='Development') Development
+    //-             option(style='font-size: 15px;' value='Construction') Construction
+    //-             option(style='font-size: 15px;' value='Statistics') Statistics
+    //-             option(style='font-size: 15px;' value='Animal Husbandry') Animal Husbandry
+    //-             option(style='font-size: 15px;' value='Social Welfare') Social Welfare
+    //-             option(style='font-size: 15px;' value='Cooperation') Cooperation
+    //-             option(style='font-size: 15px;' value='ICDS') ICDS
+    //-             option(style='font-size: 15px;' value='Family Welfare') Family Welfare
+    //-             option(style='font-size: 15px;' value='Ayurveda') Ayurveda
+    //-             option(style='font-size: 15px;' value='Malaria') Malaria
+    //-             option(style='font-size: 15px;' value='Establishment') Establishment
+    //-             option(style='font-size: 15px;' value='General') General
+    //-             option(style='font-size: 15px;' value='Mission Mangalam') Mission Mangalam
+    //-             option(style='font-size: 15px;' value='MGNREGA') MGNREGA
+    //-             option(style='font-size: 15px;' value='IRD') IRD
+    //-             option(style='font-size: 15px;' value='Free Period') Free Period
+    //-             option(style='font-size: 15px;' value='SBM') SBM
+    //-             option(style='font-size: 15px;' value='Other') Other
+    //-       button.active.bg-gradient-primary.btn.mx-3(type='submit' href='/') Add
+    

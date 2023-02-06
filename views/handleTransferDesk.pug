@@ -37,20 +37,33 @@ block sideBar
 block heading 
     include _header
 block content
-    .main-block.card
-        .left-part
-        form
-          h1 Handle Transfer
-          .info
-            input.inputtogive(type='text' name='name' placeholder='Desk ID')
-            input.inputtogive(type='text' name='name' placeholder='Current User ID')
-            input.inputtogive(type='text' name='name' placeholder='New User ID')
-            h6(style='margin-left: 20px;font') Reason For Transfering Desk:
-            select.form-select.form-select-lg.mx-3.my-3.w-40(aria-label='.form-select-lg example')
-              option(selected='') Transfer
-              option(value='1') Maternity Leave
-              option(value='2') Paternity Leave
-              option(value='3') Sick Leave
-              option(value='4') Study Leave
-              option(value='5') Hospital Leave
-          button.active.bg-gradient-primary.btn.mx-3(type='submit' href='/') Transfer
+        .row.mt-4
+          .col-xl-11.col-sm-6.mb-xl-0.mb-4
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-primary.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-box-arrow-in-right(xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' viewbox='0 0 16 16')
+                      path(fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z')
+                      path(fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                .text-end.pt-1
+                  h4.mb-0 transfer the Employees
+              hr.dark.horizontal.my-0
+              .card-body.p-3
+                form.handleTransferForm
+                    .form-group
+                        .row
+                            .col
+                                label.form-label Enter the Desk id
+                                .input-group.input-group-outline
+                                  input#handleTransferDeskId.form-control(type='text')
+                            .col
+                                label.form-label Enter the id of current user
+                                .input-group.input-group-outline
+                                  input#handleTransferCurrentUserId.form-control(type='text')
+                            .col
+                                label.form-label Enter the id of next user
+                                .input-group.input-group-outline
+                                  input#handleTransferNextUserId.form-control(type='text')
+                    .card-footer.p-2
+                        button.btn.bg-gradient-primary.mb-0(type='submit') Submit
