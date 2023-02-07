@@ -4,8 +4,18 @@ const Timeline =require('./../modal/timelineModel');
 const multer=require('multer');
 
 exports.addNewFile = async (req, res) => {
+    // console.log(req.user);
+    // console.log(req.body);
     try {
-        const user=await User.findById(req.body.userId).populate({
+        var userid;
+        if(req.user.id){
+            userid=req.user.id
+        }
+        else{
+            userid=req.body.userId
+        }
+        
+        const user=await User.findById(userid).populate({
             path:'currentDesk'
         });
 
@@ -52,7 +62,7 @@ exports.addNewFile = async (req, res) => {
         res.status(201);
         res.json(
             {
-                status: "new File creted",
+                status: "new File created",
                 data:
                 {
                     newFile
@@ -69,6 +79,9 @@ exports.addNewFile = async (req, res) => {
             }
         )
     }
+    // res.status(200).json({
+    //     status:"received"
+    // })
 }
 
 const multerStorage=multer.diskStorage({
@@ -87,7 +100,8 @@ exports.multerFileUpload=upload.single('file');
 
 exports.uploadFile=async(req,res)=>{
     try{
-        // console.log(req.body.fileId);
+        // console.log(req.user);
+        // console.log(req.body);
         // console.log(req.file);
         const data={
             file:req.file.filename

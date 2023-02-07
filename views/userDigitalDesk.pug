@@ -36,25 +36,40 @@ block content
                         h4.mb-0 Add a New File
                       #modal1.modal.fade(tabindex='-1' aria-labelledby='modal1' aria-hidden='true')
                         .modal-dialog
-                          .modal-content(style='height: 280px;width: 606px;')
-                            .modal-header(style='height:50px;')
-                              h5#exampleModalLabel1.modal-title Add a File
-                              button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close' style='height: 13px;width: 13px;color: black;')
-                            .modal-body
-                              form
-                                div(style='font-size: 25px;padding: 0px;')
-                                  label.col-form-label(for='recipient-name' style='float: left;')
-                                    | Generate a File
-                                    | ID
-                                  .card-footer.p-2
-                                    button.btn.bg-gradient-dark.mb-0(type='button') Generate
-                                .mb-3(style='padding-top: 6px;')
-                                  label.col-form-label(for='message-text' style='font-size: 17px; padding:0px;float: left;') Your Unique File ID is:
-                                .card-footer.p-2
-                                  button.btn.bg-gradient-dark.mb-0(type='button') Upload a Document
-                            .modal-footer(style='height: 60px;')
-                              button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
-                              button.btn.btn-primary(type='button' data-bs-dismiss='modal') Add
+                            .modal-content(style='height: 400px;width: 800px;')
+                                .card
+                                  .card-header.p-3.pt-2
+                                    .text-end.pt-1
+                                      h4.mb-0 Create A User
+                                  hr.dark.horizontal.my-0
+                                  .card-body.p-3
+                                    form.addNewDigitalFileForm
+                                        .form-group
+                                            .row
+                                                .col
+                                                    label.form-label Enter the Subject of File
+                                                    .input-group.input-group-outline
+                                                      input#fileSubject.form-control(type='text')
+                                                .col
+                                                    label.form-label Enter the expected date of Completion
+                                                    .input-group.input-group-outline
+                                                      input#fileExpectedDate.form-control(type='text')
+                                            .row
+                                                .col
+                                                    label.form-label Enter the applicant's name
+                                                    .input-group.input-group-outline
+                                                      input#applicantName.form-control(type='text')
+                                                .col
+                                                    label.form-label Enter the applicant's mobile nuber
+                                                    .input-group.input-group-outline
+                                                      input#applicantMobileNumber.form-control(type='text')
+                                            .row
+                                                .col
+                                                    label.form-label Enter the applicant's email id
+                                                    .input-group.input-group-outline
+                                                      input#applicantEmailId.form-control(type='text')
+                                        .card-footer.p-2
+                                            button.btn.bg-gradient-secondary.mb-0(type='submit') Create
         // ---------------------------------------------------------------------------------------------
         .row.mt-4
         // -----------LIST      ---------------------------------------------------------------------------------

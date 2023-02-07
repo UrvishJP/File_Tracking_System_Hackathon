@@ -1,7 +1,29 @@
-const handleTransfer=(deskId,currentUserId,nextUserId)=>{
-    alert(deskId);
-    console.log(currentUserId);
-    console.log(nextUserId);
+const handleTransfer=async (deskId,currentUserId,nextUserId)=>{
+    try{
+        const res= await axios({
+            method: 'PATCH',
+            url: '/api/desks/handleTransfer',
+            data:{
+                deskId:deskId,
+                currentUserId:currentUserId,
+                newUserId:nextUserId
+            }
+        });
+        // console.log("in handleTransfer.js");
+        // console.log(res);
+        if(res.data.status==='Success'){
+            alert('Transfer has been held Successfully');
+            window.setTimeout(()=>{
+                    location.assign('/adminDashboard/handleTransfer');
+            },1);  
+        }
+        else{
+            alert(res.data.messege);
+        }
+    }
+    catch(err){
+        alert('error from server');
+    }
 }
 
 document.querySelector('.handleTransferForm').addEventListener('submit',e=>{
