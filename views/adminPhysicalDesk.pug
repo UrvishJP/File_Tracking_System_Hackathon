@@ -55,39 +55,36 @@ block content
                                 .card
                                   .card-header.p-3.pt-2
                                     .text-end.pt-1
-                                      h4.mb-0 Create A User
+                                      h4.mb-0 Add file in Physical Files 
                                   hr.dark.horizontal.my-0
                                   .card-body.p-3
-                                    form.addNewFileForm
+                                    form.addNewPhyFileForm
                                         .form-group
                                             .row
                                                 .col
                                                     label.form-label Enter the Subject of File
                                                     .input-group.input-group-outline
-                                                      input#nameOfUser.form-control(type='text')
+                                                      input#fileSubject.form-control(type='text')
                                                 .col
                                                     label.form-label Enter the expected date of Completion
                                                     .input-group.input-group-outline
-                                                      input#emailIdOfUser.form-control(type='text')
+                                                      input#expectedDate.form-control(type='text')
                                             .row
                                                 .col
                                                     label.form-label Enter the applicant's name
                                                     .input-group.input-group-outline
-                                                      input#passwordOfUser.form-control(type='text')
+                                                      input#appName.form-control(type='text')
                                                 .col
                                                     label.form-label Enter the applicant's mobile nuber
                                                     .input-group.input-group-outline
-                                                      input#passwordOfUser.form-control(type='text')
+                                                      input#appMobNo.form-control(type='text')
                                             .row
                                                 .col
                                                     label.form-label Enter the applicant's email id
                                                     .input-group.input-group-outline
-                                                      input#passwordOfUser.form-control(type='text')
-                                                .col
-                                                    label.form-label(for='filepdf') Choose the file
-                                                    input.form__upload(type='file', accept='image/*', id='filepdf', name='photo')
+                                                      input#appEmail.form-control(type='text')
                                         .card-footer.p-2
-                                            button.btn.bg-gradient-secondary.mb-0(type='submit') Create
+                                            button.btn.bg-gradient-secondary.mb-0(type='submit') Add
             .col-xl-3.col-sm-6.mb-xl-0.mb-4
                 .card
                   .card-header.p-3.pt-2
@@ -121,7 +118,7 @@ block content
                 .card-header.pb-0
                     .row
                         .col-lg-6.col-7
-                            h6 List on files currently on your Digital Desk
+                            h6 List on files currently on your Physical Desk
                         .col-lg-6.col-5.my-auto.text-end
 
                 .card-body.px-0.pb-2
@@ -139,9 +136,9 @@ block content
                                 each file in files
                                     tr.text-dark
                                         th(scope='Filename')= file.subject
-                                        th.Sender=file.currentHolder
-                                        th= file.dateOfEntry.toLocaleString('en-US')
-                                        th= file.fileId
+                                        th.Sender=file.previousDesk.designation
+                                        th= file.dateOfLastForward.toLocaleString('en-US')
+                                        th= file.id
                                         th.align-middle.text-center.text-sm
                                             a.nav-link(href='/fileDetail/'+file.id)
                                                 div

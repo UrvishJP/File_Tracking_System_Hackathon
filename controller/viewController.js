@@ -96,7 +96,7 @@ exports.getUserPhysicalDesk=async (req,res,next)=>
             mode:'Physical',
             status:'In Process'
         }).populate({
-            path:'previousDesk',
+            path:'previousDesk'
         });
         // console.log(files);
         res.status(200).render('userPhysicalDesk',{

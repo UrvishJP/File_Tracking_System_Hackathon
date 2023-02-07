@@ -1,4 +1,5 @@
-const createNewDigitalFile=async(fileSubject,expectedDate,applicantName,applicantMobileNumber,applicantEmailId)=>{
+const createNewPhysicalFile=async(fileSubject,expectedDate,applicantName,applicantMobileNumber,applicantEmailId)=>{
+    alert("in function of physical file");
     try{
         // alert("in createNewFIle.js")
         // alert(fileSubject)
@@ -7,7 +8,7 @@ const createNewDigitalFile=async(fileSubject,expectedDate,applicantName,applican
             url: '/api/files/addNewFile',
             data:{
                 subject:fileSubject,
-                mode:'Digital',
+                mode:'Physical',
                 expectedDate:expectedDate,
                 applicantName:applicantName,
                 applicantMobileNumber:applicantMobileNumber,
@@ -16,7 +17,7 @@ const createNewDigitalFile=async(fileSubject,expectedDate,applicantName,applican
         });
         // console.log(res.data.data.newFile._id);
         if(res.data.status==='new File created'){
-            alert(`new file created with id- ${res.data.data.newFile._id} `); 
+            alert(`new Physical file added with id- ${res.data.data.newFile._id} `); 
         }
         else{
             alert("error in adding file");
@@ -25,14 +26,14 @@ const createNewDigitalFile=async(fileSubject,expectedDate,applicantName,applican
     catch(err){
         alert("error in adding the file");
     }
-}
+};
 
-document.querySelector('.addNewDigitalFileForm').addEventListener('submit',e=>{
+document.querySelector('.addNewPhyFileForm').addEventListener('submit',e=>{
     e.preventDefault();
     const fileSubject=document.getElementById('fileSubject').value;
-    const expectedDate=document.getElementById('fileExpectedDate').value;
-    const applicantName=document.getElementById('applicantName').value;
-    const applicantMobileNumber=document.getElementById('applicantMobileNumber').value;
-    const applicantEmailId=document.getElementById('applicantEmailId').value;
-    createNewDigitalFile(fileSubject,expectedDate,applicantName,applicantMobileNumber,applicantEmailId);
-})
+    const expectedDate=document.getElementById('expectedDate').value;
+    const applicantName=document.getElementById('appName').value;
+    const applicantMobileNumber=document.getElementById('appMobNo').value;
+    const applicantEmailId=document.getElementById('appEmail').value;
+    createNewPhysicalFile(fileSubject,expectedDate,applicantName,applicantMobileNumber,applicantEmailId);
+});
