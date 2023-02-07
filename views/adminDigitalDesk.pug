@@ -123,6 +123,37 @@ block content
                                                             path(d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z')
                                         th.align-middle.text-center.text-sm
                                             div
-                                                button.btn.text-capitalize.btn-outline-dark(type='button' data-bs-toggle='modal' data-bs-target='#modal3')
-                                                    svg.bi.bi-send-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                                                        path(d='M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z')
+                                                button.btn.btn-primary(type='button' data-toggle='modal' data-target='#exampleModal') Send
+                                                #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                                                  .modal-dialog.modal-lg(role='document')
+                                                    .modal-content
+                                                      .modal-header
+                                                        h5#exampleModalLabel.modal-title Send this File
+                                                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                                                          span(aria-hidden='true') &times;
+                                                      .modal-body
+                                                            form.sendFileAdminForm
+                                                                .form-group
+                                                                    .row
+                                                                        .col
+                                                                            label.form-label File Id:-
+                                                                            .input-group.input-group-outline
+                                                                              input#IdOfFile.form-control(type='text')
+                                                                        .col
+                                                                            label.form-label Enter the Id of user to whom you need to send
+                                                                            .input-group.input-group-outline
+                                                                              input#nextUserId.form-control(type='text')
+                                                                    .row.mt-4
+                                                                        .col
+                                                                            label.form-label Select the Status
+                                                                            .input-group.input-group-outline
+                                                                              select#sendFileStatus.form-select(aria-label='Default select example')
+                                                                                option(selected value='Approved') Approved
+                                                                                option(selected value='Rejected') Rejected
+                                                                    .row.mt-4
+                                                                        .col
+                                                                            label.form-label Enter the details/remarks
+                                                                            .input-group.input-group-outline
+                                                                                textarea#remarks(name='' cols='110' rows='3')
+                                                                .card-footer.p-2
+                                                                    button.btn.bg-gradient-secondary.mb-0(type='submit') Done

@@ -86,7 +86,7 @@ exports.addNewFile = async (req, res) => {
 
 const multerStorage=multer.diskStorage({
     destination:(req,file,cb)=>{
-        cb(null,'filesCluster/files');
+        cb(null,'public/assets/files');
     },
     filename:(req,file,cb)=>{
         const extension=file.mimetype.split('/')[1];
@@ -111,7 +111,7 @@ exports.uploadFile=async(req,res)=>{
             runValidators: true
         })
         res.status(200).json({
-            status:'file received and attached',
+            status:'Success',
             data:uploadedFile
         });
     }
@@ -201,12 +201,13 @@ exports.addExistingFile=async(req,res)=>{
 }
 
 exports.sendFile=async(req,res)=>{
+    // console.log(req.user.id);
+    // console.log(req.body);
     try{
-        // console.log("in send file controller");
+        console.log("in send file controller");
 
         // 1. check if file exist or not
-    
-            let query = File.findById(req.params.id)
+            let query = File.findById(req.body.fileId)
             const fileInfo = await query;
             if (!fileInfo) {
                 res.status(401).json({
@@ -215,14 +216,16 @@ exports.sendFile=async(req,res)=>{
             }
 
         // 2. Get desk data from the user
-
-        const user1=await User.findById(req.body.userId).populate({
+        console.log(fileInfo);
+        const user1=await User.findById(req.user.id).populate({
             path:'currentDesk'
         });
+        // console.log(user1);
         
         const user2=await User.findById(req.body.nextUserId).populate({
             path:'currentDesk'
         })
+        // console.log(user2);
         var previousDesk=user1.currentDesk;
         var nextDesk=user2.currentDesk;
 
@@ -232,16 +235,17 @@ exports.sendFile=async(req,res)=>{
 
         //  3. add timeline
         var data={
-            fileId:req.params.id,
+            fileId:req.body.fileId,
             status:req.body.status,
             remarks:req.body.remarks,
-            desk:previousDesk,
+            desk:previousDesk.id,
             dateOfReceiving:fileInfo.dateOfLastForward,
             dateOfForwarding:currentDate
         }
         const newTimeline = await Timeline.create(data);
         fileInfo.timeline.push(newTimeline.id);
         var updatedTimeline=fileInfo.timeline;
+        // console.log(updatedTimeline);
 
          // 4. update the file data
         var updatingData={
@@ -255,13 +259,13 @@ exports.sendFile=async(req,res)=>{
             timeline:updatedTimeline
         }
 
-        const doc = await File.findByIdAndUpdate(req.params.id, updatingData, {
+        const doc = await File.findByIdAndUpdate(req.body.fileId, updatingData, {
             new: true,
             runValidators: true
           });
         if(doc){
             res.status(200).json({
-                message:"file sent",
+                status:"Success",
                 file:doc
             })
         }
@@ -271,6 +275,9 @@ exports.sendFile=async(req,res)=>{
             message:err
         })
     }
+    // res.status(200).json({
+    //     message:"send file"
+    // })
 }
 
 exports.fileFilters=async(req,res)=>{
