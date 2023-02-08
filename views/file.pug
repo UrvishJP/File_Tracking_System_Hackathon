@@ -34,49 +34,69 @@ mixin timelineBlock(timeline)
           span.text-xs
             | Remarks/Comments: 
             span.text-dark.ms-sm-2.font-weight-bold= timeline.remarks
-          button.btn.btn-dark(type='submit' style='width:100px ;\
-          margin-top:15px') Mail
+          
 block heading
     nav#navbarBlur.navbar.navbar-main.navbar-expand-lg.px-0.mx-4.shadow-none.border-radius-xl(data-scroll='true')
         .container-fluid.py-1.px-3
             nav(aria-label='breadcrumb')
                 h3.font-weight-bolder.mb-0 File Details
-    .container-fluid.py-4
+    .container-fluid
         .row
-            .col-3.md-2.mt-4
-                .card
-                    .card-header.pb-2.px-3
-                        h6.mb-0 Info
-                    .card-body.pt-4.p-3
-                        ul.list-group
-                            li.list-group-item.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-200.border-radius-lg
-                                .d-flex.flex-column
-                                    span.mb-2.text-xs File ID: 
-                                        span.text-dark.font-weight-bold.ms-sm-2=file.id
-                                    span.mb-2.text-xs Date of Entry: 
-                                        span.text-dark.ms-sm-2.font-weight-bold=file.creationDate.toLocaleString('en-US')
-                                    span.mb-2.text-xs Mode: 
-                                        span.text-dark.ms-sm-2.font-weight-bold=file.mode
-                                    span.mb-2.text-xs Current Holder: 
-                                        span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.user.name
-                                    span.mb-2.text-xs Current office: 
-                                        span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.office
-                                    span.mb-2.text-xs Current desk: 
-                                        span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.designation
-            .col-md-9.mt-4
+          .col-md-10.mx-auto
+            .row
+              .col-md-6.mt-4
+                  .card
+                      .card-header.pb-2.px-3
+                          h6.mb-0 Info
+                      .card-body.pt-4.p-3
+                          ul.list-group
+                              li.list-group-item.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-200.border-radius-lg
+                                  .d-flex.flex-column
+                                      span.mb-2.text-xs File ID: 
+                                          span.text-dark.font-weight-bold.ms-sm-2=file.id
+                                      span.mb-2.text-xs Date of Entry: 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.creationDate.toLocaleString('en-US')
+                                      span.mb-2.text-xs Mode: 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.mode
+                                      span.mb-2.text-xs Current Holder: 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.user.name
+                                      span.mb-2.text-xs Current office: 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.office
+                                      span.mb-2.text-xs Current desk: 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.currentDesk.designation
+              .col-md-6.mt-4
+                  .card
+                      .card-header.pb-2.px-3
+                          h6.mb-0 Applicant Details
+                      .card-body.pt-4.p-3
+                          ul.list-group
+                              li.list-group-item.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-200.border-radius-lg
+                                  .d-flex.flex-column
+                                      span.mb-2.text-xs Applicant Name : 
+                                          span.text-dark.font-weight-bold.ms-sm-2=file.applicantDetails.name
+                                      span.mb-2.text-xs Applicant Mobile No. : 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.applicantDetails.mobileNumber
+                                      span.mb-2.text-xs Applicant Email Id : 
+                                          span.text-dark.ms-sm-2.font-weight-bold=file.applicantDetails.email
+        .row
+            .col-md-10.mt-4.mx-auto
                 .card
                     .card-header.pb-2.px-3
                         h6.mb-0 File:
                     //- img.card(src='/assets/img/PDFpreviewImage.jpg' alt='logo')
-                    embed(src=`/assets/files/${file.file}`, type="application/pdf", alt='logo')
+                    embed(src=`/assets/files/${file.file}` type="application/pdf" alt='logo' height='900px')
                     .mb-1.mt-3
-                      form.uploadFile
-                        label.form-label(for='formFileSm') Upload the File Here
-                          input#filePdf.form-control.form-control-sm(type='file')
-                          select#fileId.form-select(aria-label='Default select example')
-                            option(selected value=`${file.id}`) This File
-                        button.btn.bg-gradient-dark(style='margin-top: 10px;') Upload
-                    button.btn.bg-gradient-light(style='margin-top: 10px;') Download the file
+                      .row 
+                        .col-md-5
+                          form.uploadFile
+                            .row
+                              .col.ml-5
+                                label.form-label(for='formFileSm') Upload the File Here
+                                  input#filePdf.form-control.form-control-sm(type='file')
+                                  select#fileId.form-select(aria-label='Default select example')
+                                    option(selected value=`${file.id}`) This File
+                              .col
+                                button.btn.bg-gradient-dark(style='margin-top: 10px;') Upload
             //- .col-md.mt-4.card(style='width: 370px;\
             //-     position: relative;\
             //-     z-index: 1;')
@@ -104,11 +124,10 @@ block heading
             //-                   button.btn.bg-gradient-dark Merge File
             //-                 .px-3
             //-                   button.btn.bg-gradient-dark Submit File
-        .row
-          hr
-          hr
-        .row
-          .col-mx-10
+        //- .row
+        //-   hr
+        .row.mt-4
+          .col-md-10.mx-auto
             .card.h-100.mb-4
               .card-header.pb-2.px-3
                 .row

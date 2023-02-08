@@ -266,7 +266,8 @@ exports.sendFile=async(req,res)=>{
         if(doc){
             res.status(200).json({
                 status:"Success",
-                file:doc
+                file:doc,
+                user:user1
             })
         }
     }

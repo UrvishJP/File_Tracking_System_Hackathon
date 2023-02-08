@@ -16,9 +16,16 @@ const sendFileAdmin=async(fileId,nextUserId,status,remarks)=>{
         // console.log(res);
         if(res.data.status==='Success'){
             alert(`file of subject ${res.data.file.subject} has been sent to ${res.data.file.currentUserName}`);
-            window.setTimeout(()=>{
+            if(res.data.user.role==="Admin"){
+                window.setTimeout(()=>{
                     location.assign('/adminDashboard/digitalDesk');
+            },1); 
+            }
+            else{
+                window.setTimeout(()=>{
+                    location.assign('/userDashboard/digitalDesk');
             },1);  
+            }
         }
         else{
             alert(res.data.messege);

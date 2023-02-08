@@ -19,6 +19,6 @@ document.querySelector('.uploadFile').addEventListener('submit',e=>{
     // const filePdf=document.getElementById('formFileSm').files[0];
     const form = new FormData();
     form.append('fileId', document.getElementById('fileId').value);
-    form.append('file', document.getElementById('filePdf').files[0]);
+    form.append('file', document.getElementById('filePdf').files[0]); 
     uploadFile(form);
 })
