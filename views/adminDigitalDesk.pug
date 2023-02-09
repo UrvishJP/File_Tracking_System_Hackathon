@@ -140,9 +140,14 @@ block content
                                                                             .input-group.input-group-outline
                                                                               input#IdOfFile.form-control(type='text')
                                                                         .col
-                                                                            label.form-label Enter the Id of user to whom you need to send
-                                                                            .input-group.input-group-outline
-                                                                              input#nextUserId.form-control(type='text')
+                                                                            //- label.form-label Enter the Id of user to whom you need to send
+                                                                            //- .input-group.input-group-outline
+                                                                            label.form-label(for='exampleDataList') Select the User
+                                                                            input#exampleDataList.form-control(list='datalistOptions' placeholder='Type to search...')
+                                                                            datalist#datalistOptions
+                                                                                each user in users
+                                                                                    option(value=`${user.name} - ${user.currentDesk.designation} - ${user.currentDesk.office}`)
+                                                                            
                                                                     .row.mt-4
                                                                         .col
                                                                             label.form-label Select the Status

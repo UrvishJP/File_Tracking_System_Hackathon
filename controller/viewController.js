@@ -1,4 +1,5 @@
 const File =require('./../modal/fileModel');
+const User =require('./../modal/userModel');
 
 exports.getLoginPage=(req,res)=>{
     res.status(200).render('login',{
@@ -10,6 +11,10 @@ exports.getAdminDigitalDesk=async (req,res,next)=>
 {
     // console.log(req.user);
     try{
+        const users=await User.find({
+            onDesk:true
+        }).populate('currentDesk')
+        
         const files= await File.find({
             currentUserName:req.user.name,
             mode:'Digital',
@@ -20,7 +25,8 @@ exports.getAdminDigitalDesk=async (req,res,next)=>
         // console.log(files);
         res.status(200).render('adminDigitalDesk',{
             title:'Admin Dashboard DDO',
-            files:files
+            files:files,
+            users:users
         })
     }
     catch(err)
