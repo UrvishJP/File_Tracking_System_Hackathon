@@ -21,4 +21,6 @@ router.get('/userDashboard/physicalDesk',authController.isLoggedIn ,viewControll
 router.get('/trackfile/:id',authController.isLoggedIn ,viewController.getTrackFileInfo);
 router.get('/fileDetail/:id',authController.isLoggedIn ,viewController.getFileInfo);
 
+router.get('/applicant/files',viewController.getApplicantDesk);
+
 module.exports=router;

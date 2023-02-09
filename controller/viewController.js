@@ -234,3 +234,29 @@ exports.getTrackFileInfo=async (req,res)=>{
         });
     }
 }
+
+exports.getApplicantDesk=async(req,res,next)=>{
+    try{
+        // console.log(req.query.applicantMobileNumber);
+        var body;
+        if(req.query.applicantMobileNumber){
+            body=req.query
+        }
+        else{
+            body={applicantMobileNumber:0000000000}
+        }
+        // console.log(body);
+        const query=File.find(body);
+
+        const files=await query
+        res.status(200).render('applicantDashboard',{
+            title:'District Panchayat- Patan',
+            files:files
+        })
+    }
+    catch(err){
+        res.status(401).send({
+            error: err
+        })
+    }
+}

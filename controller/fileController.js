@@ -54,6 +54,7 @@ exports.addNewFile = async (req, res) => {
                 mobileNumber:req.body.applicantMobileNumber,
                 email:req.body.applicantEmailId
             },
+            applicantMobileNumber:req.body.aoolicantMobileNumber,
             dateOfLastForward:currentDate
         }
 

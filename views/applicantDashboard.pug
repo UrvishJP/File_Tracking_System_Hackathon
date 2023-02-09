@@ -1,0 +1,56 @@
+extends base
+
+block content
+    .container-fluid.py-4
+        .row-3
+            .col-sm
+            .card
+              .card-header.p-3.pt-2
+                .icon.icon-lg.icon-shape.bg-gradient-dark.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
+                  i.material-icons.opacity-10
+                    svg.bi.bi-box-arrow-in-right(xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' viewbox='0 0 16 16')
+                      path(fill-rule='evenodd' d='M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z')
+                      path(fill-rule='evenodd' d='M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                .text-end.pt-1
+                  h4.mb-0 Get your file here
+              hr.dark.horizontal.my-0
+              .card-footer.p-3
+                form.applicantSearch
+                  .form-group
+                    label.form-label Enter your mobile Number here
+                    .input-group.input-group-outline
+                      input#mobileNumber.form-control(type='text')
+                  .card-footer.p-2
+                    button.btn.bg-gradient-dark.mb-0(type='submit') Get
+        // ---------------------------------------------------------------------------------------------
+        .row.mt-4
+        // -----------LIST      ---------------------------------------------------------------------------------
+        .row.mb-4
+            .card
+                .card-header.pb-0
+                    .row
+                        .col-lg-6.col-7
+                            h6 List on files currently on your Digital Desk
+                        .col-lg-6.col-5.my-auto.text-end
+
+                .card-body.px-0.pb-2
+                    .table-responsive
+                        table.table.align-items-center.mb-0
+                            thead(style='width: 597px;')
+                                tr
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' width='150' style='width: 404px; font-size: 2px;') Subject
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 152px;') Date Of Creation
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 282px;') File ID
+                                    th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 57px;text-align: center;') Details
+                            tbody
+                                each file in files
+                                    tr.text-dark
+                                        th(scope='Filename')= file.subject
+                                        th= file.creationDate.toLocaleString('en-US')
+                                        th= file.id
+                                        th.align-middle.text-center.text-sm
+                                            a.nav-link(href='/trackfile/'+file.id)
+                                                div
+                                                    button.btn.btn-outline-dark(type='button')
+                                                        svg.bi.bi-info-circle-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                            path(d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z')
