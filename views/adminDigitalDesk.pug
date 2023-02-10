@@ -115,6 +115,7 @@ block content
                                         th.Sender=file.previousDesk.designation
                                         th= file.dateOfLastForward.toLocaleString('en-US')
                                         th= file.id
+                                        - var idOfFile=file.id
                                         th.align-middle.text-center.text-sm
                                             a.nav-link(href='/fileDetail/'+file.id)
                                                 div
@@ -143,10 +144,10 @@ block content
                                                                             //- label.form-label Enter the Id of user to whom you need to send
                                                                             //- .input-group.input-group-outline
                                                                             label.form-label(for='exampleDataList') Select the User
-                                                                            input#exampleDataList.form-control(list='datalistOptions' placeholder='Type to search...')
+                                                                            input#nextUserId.form-control(list='datalistOptions' placeholder='search the user here.......')
                                                                             datalist#datalistOptions
                                                                                 each user in users
-                                                                                    option(value=`${user.name} - ${user.currentDesk.designation} - ${user.currentDesk.office}`)
+                                                                                    option(value=`${user.currentDesk.designation} - ${user.currentDesk.office} - ${user.name}`)
                                                                             
                                                                     .row.mt-4
                                                                         .col

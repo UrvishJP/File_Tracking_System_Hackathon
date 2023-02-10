@@ -202,7 +202,7 @@ exports.addExistingFile=async(req,res)=>{
 
 exports.sendFile=async(req,res)=>{
     // console.log(req.user.id);
-    // console.log(req.body);
+    console.log(req.body);
     try{
         console.log("in send file controller");
 
@@ -222,54 +222,54 @@ exports.sendFile=async(req,res)=>{
         });
         // console.log(user1);
         
-        const user2=await User.findById(req.body.nextUserId).populate({
+        const user2=await User.find({name:req.body.nextUserName}).populate({
             path:'currentDesk'
         })
         // console.log(user2);
         var previousDesk=user1.currentDesk;
         var nextDesk=user2.currentDesk;
+        console.log(user2);
+        // var fileToBeUpdated=req.params.id;
 
-        var fileToBeUpdated=req.params.id;
+        // var currentDate= new Date();
 
-        var currentDate= new Date();
+        // //  3. add timeline
+        // var data={
+        //     fileId:req.body.fileId,
+        //     status:req.body.status,
+        //     remarks:req.body.remarks,
+        //     desk:previousDesk.id,
+        //     dateOfReceiving:fileInfo.dateOfLastForward,
+        //     dateOfForwarding:currentDate
+        // }
+        // const newTimeline = await Timeline.create(data);
+        // fileInfo.timeline.push(newTimeline.id);
+        // var updatedTimeline=fileInfo.timeline;
+        // // console.log(updatedTimeline);
 
-        //  3. add timeline
-        var data={
-            fileId:req.body.fileId,
-            status:req.body.status,
-            remarks:req.body.remarks,
-            desk:previousDesk.id,
-            dateOfReceiving:fileInfo.dateOfLastForward,
-            dateOfForwarding:currentDate
-        }
-        const newTimeline = await Timeline.create(data);
-        fileInfo.timeline.push(newTimeline.id);
-        var updatedTimeline=fileInfo.timeline;
-        // console.log(updatedTimeline);
+        //  // 4. update the file data
+        // var updatingData={
+        //     currentDesk:user2.currentDesk,
+        //     previousDesk:user1.currentDesk,
+        //     currentBranch:user2.currentDesk.branch,
+        //     currentOffice:user2.currentDesk.office,
+        //     currentUserId:user2.id,
+        //     currentUserName:user2.name,
+        //     dateOfLastForward:currentDate,
+        //     timeline:updatedTimeline
+        // }
 
-         // 4. update the file data
-        var updatingData={
-            currentDesk:user2.currentDesk,
-            previousDesk:user1.currentDesk,
-            currentBranch:user2.currentDesk.branch,
-            currentOffice:user2.currentDesk.office,
-            currentUserId:user2.id,
-            currentUserName:user2.name,
-            dateOfLastForward:currentDate,
-            timeline:updatedTimeline
-        }
-
-        const doc = await File.findByIdAndUpdate(req.body.fileId, updatingData, {
-            new: true,
-            runValidators: true
-          });
-        if(doc){
-            res.status(200).json({
-                status:"Success",
-                file:doc,
-                user:user1
-            })
-        }
+        // const doc = await File.findByIdAndUpdate(req.body.fileId, updatingData, {
+        //     new: true,
+        //     runValidators: true
+        //   });
+        // if(doc){
+        //     res.status(200).json({
+        //         status:"Success",
+        //         file:doc,
+        //         user:user1
+        //     })
+        // }
     }
     catch(err){
         res.status(400).json({
