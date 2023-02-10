@@ -148,13 +148,17 @@ block content
                     .form-group
                         .row
                             .col
-                                label.form-label Enter the User id
-                                .input-group.input-group-outline
-                                  input#assignDeskUserId.form-control(type='text')
+                                label.form-label(for='exampleDataList') Select the User to be assigned
+                                input#nextUserId.form-control(list='datalistOptions' placeholder='search the user here.......')
+                                datalist#datalistOptions
+                                    each user in users
+                                        option(value=`${user.currentDesk.designation} - ${user.currentDesk.office} - ${user.name}`)
                             .col
-                                label.form-label Enter the Desk id
-                                .input-group.input-group-outline
-                                  input#assignDeskDeskId.form-control(type='text')
+                                label.form-label(for='exampleDataList') Select the Desk
+                                input#nextUserId.form-control(list='datalistOptions' placeholder='search the desk here.......')
+                                datalist#datalistOptions
+                                    each desk in desks
+                                        option(value=`${user.currentDesk.designation} - ${user.currentDesk.office} - ${user.name}`)
                     .card-footer.p-2
                         button.btn.bg-gradient-primary.mb-0(type='submit') Assign
     

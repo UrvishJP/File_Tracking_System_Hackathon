@@ -24,6 +24,7 @@ exports.getAllDesks=async(req,res)=>
     }
 }
 exports.assignDesk = async(req,res,next) =>{
+    console.log(req.body);
 try{
     const data = await Desk.findByIdAndUpdate(req.params.id,{user:req.body.user},{
         new:true
