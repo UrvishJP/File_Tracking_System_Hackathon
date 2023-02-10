@@ -120,6 +120,7 @@ block content
                                         th.Sender=file.previousDesk.designation
                                         th= file.dateOfLastForward.toLocaleString('en-US')
                                         th= file.id
+                                        - var idOfFile=file.id
                                         th.align-middle.text-center.text-sm
                                             a.nav-link(href='/fileDetail/'+file.id)
                                                 div
@@ -145,9 +146,14 @@ block content
                                                                             .input-group.input-group-outline
                                                                               input#IdOfFile.form-control(type='text')
                                                                         .col
-                                                                            label.form-label Enter the Id of user to whom you need to send
-                                                                            .input-group.input-group-outline
-                                                                              input#nextUserId.form-control(type='text')
+                                                                            //- label.form-label Enter the Id of user to whom you need to send
+                                                                            //- .input-group.input-group-outline
+                                                                            label.form-label(for='exampleDataList') Select the User
+                                                                            input#nextUserId.form-control(list='datalistOptions' placeholder='search the user here.......')
+                                                                            datalist#datalistOptions
+                                                                                each user in users
+                                                                                    option(value=`${user.currentDesk.designation} - ${user.currentDesk.office} - ${user.name}`)
+                                                                            
                                                                     .row.mt-4
                                                                         .col
                                                                             label.form-label Select the Status

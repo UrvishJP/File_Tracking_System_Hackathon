@@ -224,7 +224,7 @@ exports.sendFile=async(req,res)=>{
     // console.log(req.body);
     // console.log("in send file function");
     try{
-        console.log("in send file controller");
+        // console.log("in send file controller");
 
         // 1. check if file exist or not
             let query = File.findById(req.body.fileId)
@@ -236,19 +236,19 @@ exports.sendFile=async(req,res)=>{
             }
 
         // 2. Get desk data from the user
-        console.log(fileInfo);
+        // console.log(fileInfo);
         const user1=await User.findById(req.user.id).populate({
             path:'currentDesk'
         });
         // console.log(user1);
         
-        const user2=await User.findById(req.body.nextUserId).populate({
+        const user2=await User.find({name:req.body.nextUserName}).populate({
             path:'currentDesk'
         })
         // console.log(user2);
         var previousDesk=user1.currentDesk;
         var nextDesk=user2.currentDesk;
-
+        // console.log(user2);
         var fileToBeUpdated=req.params.id;
 
         var currentDate= new Date();
@@ -290,6 +290,9 @@ exports.sendFile=async(req,res)=>{
                 user:user1
             })
         }
+        // res.status(200).json({
+        //     status:"success"
+        // })
     }
     catch(err){
         res.status(400).json({

@@ -1,4 +1,6 @@
 const File =require('./../modal/fileModel');
+const User =require('./../modal/userModel');
+const Desk=require('./../modal/deskModel');
 const Log=require('./../modal/logModel');
 
 exports.getLoginPage=(req,res)=>{
@@ -11,6 +13,10 @@ exports.getAdminDigitalDesk=async (req,res,next)=>
 {
     // console.log(req.user);
     try{
+        const users=await User.find({
+            onDesk:true
+        }).populate('currentDesk')
+        
         const files= await File.find({
             currentUserName:req.user.name,
             mode:'Digital',
@@ -21,7 +27,8 @@ exports.getAdminDigitalDesk=async (req,res,next)=>
         // console.log(files);
         res.status(200).render('adminDigitalDesk',{
             title:'Admin Dashboard DDO',
-            files:files
+            files:files,
+            users:users
         })
     }
     catch(err)
@@ -34,32 +41,32 @@ exports.getAdminDigitalDesk=async (req,res,next)=>
     }
 }
 
-exports.getAdminPhysicalDesk=async (req,res,next)=>
-{
-    // console.log(req.user);
-    try{
-        const files= await File.find({
-            currentUserName:req.user.name,
-            mode:'Physical',
-            status:'In Process'
-        }).populate({
-            path:'previousDesk',
-        });
-        // console.log(files);
-        res.status(200).render('adminPhysicalDesk',{
-            title:'Admin Dashboard DDO',
-            files:files
-        })
-    }
-    catch(err)
-    {
-        res.status(401).send(
-            {
-                error:err
-            }
-        )
-    }
-}
+// exports.getAdminPhysicalDesk=async (req,res,next)=>
+// {
+//     // console.log(req.user);
+//     try{
+//         const files= await File.find({
+//             currentUserName:req.user.name,
+//             mode:'Physical',
+//             status:'In Process'
+//         }).populate({
+//             path:'previousDesk',
+//         });
+//         // console.log(files);
+//         res.status(200).render('adminPhysicalDesk',{
+//             title:'Admin Dashboard DDO',
+//             files:files
+//         })
+//     }
+//     catch(err)
+//     {
+//         res.status(401).send(
+//             {
+//                 error:err
+//             }
+//         )
+//     }
+// }
 
 exports.getUserDigitalDesk=async (req,res,next)=>
 {
@@ -88,32 +95,32 @@ exports.getUserDigitalDesk=async (req,res,next)=>
     }
 }
 
-exports.getUserPhysicalDesk=async (req,res,next)=>
-{
-    // console.log(req.user);
-    try{
-        const files= await File.find({
-            currentUserName:req.user.name,
-            mode:'Physical',
-            status:'In Process'
-        }).populate({
-            path:'previousDesk'
-        });
-        // console.log(files);
-        res.status(200).render('userPhysicalDesk',{
-            title:'User Dashboard DDO',
-            files:files
-        })
-    }
-    catch(err)
-    {
-        res.status(401).send(
-            {
-                error:err
-            }
-        )
-    }
-}
+// exports.getUserPhysicalDesk=async (req,res,next)=>
+// {
+//     // console.log(req.user);
+//     try{
+//         const files= await File.find({
+//             currentUserName:req.user.name,
+//             mode:'Physical',
+//             status:'In Process'
+//         }).populate({
+//             path:'previousDesk'
+//         });
+//         // console.log(files);
+//         res.status(200).render('userPhysicalDesk',{
+//             title:'User Dashboard DDO',
+//             files:files
+//         })
+//     }
+//     catch(err)
+//     {
+//         res.status(401).send(
+//             {
+//                 error:err
+//             }
+//         )
+//     }
+// }
 
 exports.getTrackFileDesk=async (req,res)=>{
     try{
@@ -146,8 +153,17 @@ exports.getTrackFileDesk=async (req,res)=>{
 
 exports.getCreateUserDesk=async (req,res)=>{
     try{
+        const users=await User.find({
+            onDesk:false
+        }).populate('currentDesk');
+
+        const desks=await Desk.find({
+            userAssigned:false
+        });
         res.status(200).render('createUserDesk',{
             title:'Admin Dashboard DDO',
+            users:users,
+            desks:desks
         });
     }
     catch(err){

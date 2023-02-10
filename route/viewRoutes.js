@@ -9,7 +9,7 @@ router.get('/',viewController.getLoginPage);
 
 router.get('/adminDashboard', authController.isLoggedIn ,viewController.getAdminDigitalDesk);
 router.get('/adminDashboard/digitalDesk',authController.isLoggedIn ,viewController.getAdminDigitalDesk);
-router.get('/adminDashboard/physicalDesk',authController.isLoggedIn ,viewController.getAdminPhysicalDesk);
+// router.get('/adminDashboard/physicalDesk',authController.isLoggedIn ,viewController.getAdminPhysicalDesk);
 router.get('/adminDashboard/trackFiles',authController.isLoggedIn ,viewController.getTrackFileDesk);
 router.get('/adminDashboard/createUser',authController.isLoggedIn ,viewController.getCreateUserDesk);
 router.get('/adminDashboard/handleTransfer',authController.isLoggedIn ,viewController.getTransferDesk);
@@ -17,7 +17,6 @@ router.get('/adminDashboard/logDesk',authController.isLoggedIn,viewController.ge
 
 router.get('/userDashboard',authController.isLoggedIn ,viewController.getUserDigitalDesk);
 router.get('/userDashboard/DigitalDesk',authController.isLoggedIn ,viewController.getUserDigitalDesk);
-router.get('/userDashboard/physicalDesk',authController.isLoggedIn ,viewController.getUserPhysicalDesk);
 router.get('/userDashboard/logDesk',authController.isLoggedIn,viewController.getUserLogDesk);
 
 router.get('/trackfile/:id',authController.isLoggedIn ,viewController.getTrackFileInfo);
