@@ -14,9 +14,16 @@ try {
         })
         return next();
     }
-    const isuser = await User.findOne({email}).select("+password")
+    const isuser = await User.findOne({email})
     // console.log(isuser.id);
-   
+    // console.log(isuser);
+    if(isuser.onDesk===false){
+        res.status(200).json({
+            status:"fail",
+            messege:"You are no more the Desk"
+        })
+        return next();
+    }
 
     // const userpassword =  isuser.password
     if(!isuser || (password!=isuser.password)){
@@ -173,13 +180,14 @@ exports.updateUser = async(req,res,next)=>{
     var cuser =await User.findByIdAndUpdate(currentUser,{currentDesk :null,onDesk:false},{
         new:true,
         runValidators:true
-    }
-    )
+    })
+
     if(!cuser) res.status(400).json({messege:"Current User does not exist,Please Provide a registred User id"})
     var nuser =await User.findByIdAndUpdate(newUser,{currentDesk:desk, onDesk:true},{
         new:true,
         runValidators:true
     })
+    
     if(!nuser) res.status(400).json({messege:"New User does not exist,Please Provide a registred User id"})
     res.status(200).json({
         status:"Success"
