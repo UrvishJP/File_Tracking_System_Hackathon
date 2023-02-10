@@ -10,8 +10,8 @@ const login=async(email,password,role)=>{
                 role:role
             }
         });
-        console.log("in login.js");
-        console.log(res);
+        // console.log("in login.js");
+        // console.log(res);
         if(res.data.status==='success'){
             alert('logged in sucessfully');
             window.setTimeout(()=>{

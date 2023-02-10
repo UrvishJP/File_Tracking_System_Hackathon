@@ -1,9 +1,11 @@
+const Log=require('./../modal/logModel');
 const User=require('./../modal/userModel');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+
 
 exports.Login = async (req,res,next) => {
 try {
-    console.log('req.body');
+    // console.log('req.body');
     const {email,password,role} = req.body
     if(!email || !password ){
         res.status(200).json({
@@ -12,9 +14,16 @@ try {
         })
         return next();
     }
-    const isuser = await User.findOne({email}).select("+password")
+    const isuser = await User.findOne({email})
     // console.log(isuser.id);
-   
+    // console.log(isuser);
+    if(isuser.onDesk===false){
+        res.status(200).json({
+            status:"fail",
+            messege:"You are no more the Desk"
+        })
+        return next();
+    }
 
     // const userpassword =  isuser.password
     if(!isuser || (password!=isuser.password)){
@@ -162,6 +171,7 @@ exports.getAllUsers=async(req,res)=>
         res.json(error)
     }
 }
+
 exports.updateUser = async(req,res,next)=>{
     var currentUser = req.body.currentUserId;
     var newUser = req.body.newUserId;
@@ -170,15 +180,35 @@ exports.updateUser = async(req,res,next)=>{
     var cuser =await User.findByIdAndUpdate(currentUser,{currentDesk :null,onDesk:false},{
         new:true,
         runValidators:true
-    }
-    )
+    })
+
     if(!cuser) res.status(400).json({messege:"Current User does not exist,Please Provide a registred User id"})
     var nuser =await User.findByIdAndUpdate(newUser,{currentDesk:desk, onDesk:true},{
         new:true,
         runValidators:true
     })
+    
     if(!nuser) res.status(400).json({messege:"New User does not exist,Please Provide a registred User id"})
     res.status(200).json({
         status:"Success"
     })
+}
+
+exports.getMyLogs=async(req,res)=>{
+    try{
+        const logs=await Log.find({$expr:{$eq:[{$month:'$time'},`${req.query.month}`]},userId:`${req.body.userId}`});
+        // console.log(logs.length);
+        res.status(200).json({
+            status:'Success',
+            logs:logs,
+            length:logs.length
+        });
+    }
+    catch(err){
+        res.status(400).json({
+            status:"fail"
+        })
+    }
+    // console.log(req.query.month);
+    // console.log(logs);
 }

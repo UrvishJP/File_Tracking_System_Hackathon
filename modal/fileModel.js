@@ -98,6 +98,11 @@ const fileSchema=new mongoose.Schema(
             }
         },
 
+        applicantMobileNumber:
+        {
+            type:Number
+        },
+
         file:{
             type:String
         },

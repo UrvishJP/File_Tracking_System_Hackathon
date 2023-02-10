@@ -14,11 +14,11 @@ block sideBar
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') dashboard 
                         span(class='nav-link-text ms-1') Digital Desk
-                li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/physicalDesk')
-                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') table_view 
-                        span(class='nav-link-text ms-1') Physical Desk
+                //- li(class='nav-item')
+                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/physicalDesk')
+                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                //-             i(class='material-icons opacity-10') table_view 
+                //-         span(class='nav-link-text ms-1') Physical Desk
                 li(class='nav-item')
                     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/trackFiles')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
@@ -30,16 +30,21 @@ block sideBar
                             i(class='material-icons opacity-10') person_add 
                         span(class='nav-link-text ms-1') Create/Add
                 li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/logDesk')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') swap_horiz
-                        span(class='nav-link-text ms-1') Handle Transfer
+                            i(class='material-icons opacity-10') receipt_long 
+                        span(class='nav-link-text ms-1') log/Record
+                //- li(class='nav-item')
+                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
+                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                //-             i(class='material-icons opacity-10') swap_horiz
+                //-         span(class='nav-link-text ms-1') Handle Transfer
 block heading 
     include _header
 block content
     .container-fluid.py-4
         .row
-          .col-xl-8.col-sm-6.mb-xl-0.mb-4
+          .col-xl-8.col-sm-6.mb-xl-0.mb-4.mx-auto
             .card
               .card-header.p-3.pt-2
                 .icon.icon-lg.icon-shape.bg-gradient-secondary.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
@@ -76,7 +81,7 @@ block content
                     .card-footer.p-2
                         button.btn.bg-gradient-secondary.mb-0(type='submit') Create
         .row.mt-4
-          .col-xl-8.col-sm-6.mb-xl-0.mb-4
+          .col-xl-8.col-sm-6.mb-xl-0.mb-4.mx-auto
             .card
               .card-header.p-3.pt-2
                 .icon.icon-lg.icon-shape.bg-gradient-success.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute
@@ -132,7 +137,7 @@ block content
                     .card-footer.p-2
                         button.btn.bg-gradient-success.mb-0(type='submit') Add
         .row.mt-4
-          .col-xl-8.col-sm-6.mb-xl-0.mb-4
+          .col-xl-8.col-sm-6.mb-xl-0.mb-4.mx-auto
             .card
               .card-header.p-3.pt-2
                 .icon.icon-lg.icon-shape.bg-gradient-primary.shadow-dark.text-center.border-radius-xl.mt-n4.position-absolute

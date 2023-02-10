@@ -1,6 +1,7 @@
 const File = require('./../modal/fileModel');
 const User =require('./../modal/userModel');
 const Timeline =require('./../modal/timelineModel');
+const Log=require('./../modal/logModel');
 const multer=require('multer');
 
 exports.addNewFile = async (req, res) => {
@@ -54,6 +55,7 @@ exports.addNewFile = async (req, res) => {
                 mobileNumber:req.body.applicantMobileNumber,
                 email:req.body.applicantEmailId
             },
+            applicantMobileNumber:req.body.aoolicantMobileNumber,
             dateOfLastForward:currentDate
         }
 
@@ -200,9 +202,27 @@ exports.addExistingFile=async(req,res)=>{
     }
 }
 
+exports.logger=async(req,res,next)=>{
+    // console.log("in logger");
+        // console.log(req.body.fileId);
+        // console.log(req.user.id);
+        var date= new Date();
+        // console.log(date);
+        var data={
+            fileId:req.body.fileId,
+            userId:req.user.id,
+            time:date
+        }
+
+        const newlog = await Log.create(data);
+
+        next()
+}
+
 exports.sendFile=async(req,res)=>{
     // console.log(req.user.id);
     // console.log(req.body);
+    // console.log("in send file function");
     try{
         // console.log("in send file controller");
 

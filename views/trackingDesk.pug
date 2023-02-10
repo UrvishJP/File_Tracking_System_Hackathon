@@ -15,11 +15,11 @@ block sideBar
                 .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
                   i.material-icons.opacity-10 dashboard
                 span.nav-link-text.ms-1 Digital Desk
-            li.nav-item
-              a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/physicalDesk')
-                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
-                  i.material-icons.opacity-10 table_view
-                span.nav-link-text.ms-1 Physical Desk
+            //- li.nav-item
+            //-   a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/physicalDesk')
+            //-     .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+            //-       i.material-icons.opacity-10 table_view
+            //-     span.nav-link-text.ms-1 Physical Desk
             li.nav-item
               a.nav-link.text-white.active.bg-gradient-primary(href='/adminDashboard/trackFiles')
                 .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
@@ -29,12 +29,17 @@ block sideBar
               a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/createUser')
                 .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
                   i.large.material-icons person_add
-                span.nav-link-text.ms-1 Create a User
-            li.nav-item
-              a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/handleTransfer')
-                .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
-                  i.large.material-icons swap_horiz
-                span.nav-link-text.ms-1 Handle Transfer
+                span.nav-link-text.ms-1 Create/Add
+            li(class='nav-item')
+              a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/logDesk')
+                  div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                      i(class='material-icons opacity-10') receipt_long 
+                  span(class='nav-link-text ms-1') log/Record
+            //- li.nav-item
+            //-   a.nav-link.text-white.active.bg-gradient-dark(href='/adminDashboard/handleTransfer')
+            //-     .text-white.text-center.me-2.d-flex.align-items-center.justify-content-center
+            //-       i.large.material-icons swap_horiz
+            //-     span.nav-link-text.ms-1 Handle Transfer
 block heading 
     include _header
 block content

@@ -1,0 +1,105 @@
+extends base
+
+block sideBar
+    aside(class='sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark' id='sidenav-main')
+        div(class='sidenav-header')
+            i(class='fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none' aria-hidden='true' id='iconSidenav')
+            a(class='navbar-brand m-0' href='' target='_blank')
+                span(class='ms-1 font-weight-bold text-white') District Panchayat-Patan
+        hr(class='horizontal light mt-0 mb-2')
+        div(class='collapse navbar-collapse  w-auto' id='sidenav-collapse-main')
+            ul(class='navbar-nav')
+                li(class='nav-item')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/digitalDesk')
+                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                            i(class='material-icons opacity-10') dashboard 
+                        span(class='nav-link-text ms-1') Digital Desk
+                //- li(class='nav-item')
+                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/physicalDesk')
+                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                //-             i(class='material-icons opacity-10') table_view 
+                //-         span(class='nav-link-text ms-1') Physical Desk
+                li(class='nav-item')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/trackFiles')
+                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                            i(class='material-icons opacity-10') receipt_long
+                        span(class='nav-link-text ms-1') Track a file
+                li(class='nav-item')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/createUser')
+                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                            i(class='material-icons opacity-10') person_add 
+                        span(class='nav-link-text ms-1') Create/Add
+                li(class='nav-item')
+                    a(class='nav-link text-white active bg-gradient-primary' href='/adminDashboard/logDesk')
+                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                            i(class='material-icons opacity-10') receipt_long 
+                        span(class='nav-link-text ms-1') log/Record
+                //- li(class='nav-item')
+                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
+                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                //-             i(class='material-icons opacity-10') swap_horiz
+                //-         span(class='nav-link-text ms-1') Handle Transfer
+block heading 
+    include _header
+block content
+    .container-fluid.py-4
+        .row
+            .col-5.mx-auto
+                .card
+                  .card-header.p-3.pt-2
+                    .icon.icon-lg.icon-shape.bg-gradient-info.shadow-info.text-center.border-radius-xl.mt-n4.position-absolute
+                      i.material-icons.opacity-10
+                        svg.bi.bi-search(xmlns='http://www.w3.org/2000/svg' width='27' height='27' fill='currentColor' viewbox='0 0 16 16')
+                          path(d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z')
+                    .text-end.pt-1
+                      h4.mb-0 Search your work for the month
+                  hr.dark.horizontal.my-0
+                  .container
+                    form.logForm
+                      .form-group
+                        .row.pb-3
+                          label.form-label.mt-4 select the month for which you want files
+                            select#selectMonth.form-select(aria-label='Default select example')
+                              option(value='1') January
+                              option(value='2') February
+                              option(value='3') March
+                              option(value='4') April
+                              option(value='5') May
+                              option(value='6') June
+                              option(value='7') July
+                              option(value='8') August
+                              option(value='9') September
+                              option(value='10') October
+                              option(value='11') November
+                              option(value='12') December
+                        //- hr.dark.horizontal.my-1
+                        .card-footer.p-2
+                          button.btn.bg-gradient-dark.mb-0(type='submit') Submit
+
+        // ---------------------------------------------------------------------------------------------
+        .row.mt-4
+        // -----------LIST      ---------------------------------------------------------------------------------
+        .row.mb-4
+            .col-10.mx-auto
+                .card
+                    .card-header.pb-0
+                        .row
+                            .col-lg-6.col-7
+                                h6 List on files currently on your Digital Desk
+                            .col-lg-6.col-5.my-auto.text-end
+
+                    .card-body.px-0.pb-2
+                        .table-responsive
+                            table.table.align-items-center.mb-0
+                                thead(style='width: 597px;')
+                                    tr
+                                        th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' width='150' style='width: 404px; font-size: 2px;') Subject
+                                        th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 282px;') File ID
+                                        th.text-uppercase.text-secondary.text-lg.font-weight-bolder.opacity-7(scope='col' style='width: 282px;') Date You Completed Working
+                                tbody
+                                    each log in logs
+                                        tr.text-dark
+                                            th= log.fileId.subject
+                                            th=log.fileId.id
+                                            th=log.time
+                                        

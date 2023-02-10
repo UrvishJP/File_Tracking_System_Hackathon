@@ -15,7 +15,6 @@ mixin timelineBlock(timeline)
     .col-10
       li.border-0.d-flex.p-4.mb-2.mt-3.bg-gray-300.border-radius-lg
         .col-12.d-flex.flex-column
-          h6.mb-3.text-sm= timeline.desk.user.name
           span.text-xs
             | Office:   
             span.text-dark.ms-sm-2.font-weight-bold= timeline.desk.office
@@ -26,14 +25,14 @@ mixin timelineBlock(timeline)
             | Status: 
             span.text-dark.ms-sm-2.font-weight-bold= timeline.status
           span.mb-2.text-xs
-            | Date of Receiving: 
-            span.text-dark.ms-sm-2.font-weight-bold= timeline.dateOfReceiving.toLocaleString('en-US')
-          span.text-xs
-            | Date of Forwarding: 
-            span.text-dark.ms-sm-2.font-weight-bold=timeline.dateOfForwarding.toLocaleString('en-US')
-          span.text-xs
-            | Remarks/Comments: 
-            span.text-dark.ms-sm-2.font-weight-bold= timeline.remarks
+        //-     | Date of Receiving: 
+        //-     span.text-dark.ms-sm-2.font-weight-bold= timeline.dateOfReceiving.toLocaleString('en-US')
+        //-   span.text-xs
+        //-     | Date of Forwarding: 
+        //-     span.text-dark.ms-sm-2.font-weight-bold=timeline.dateOfForwarding.toLocaleString('en-US')
+        //-   span.text-xs
+        //-     | Remarks/Comments: 
+        //-     span.text-dark.ms-sm-2.font-weight-bold= timeline.remarks
 block heading
     nav#navbarBlur.navbar.navbar-main.navbar-expand-lg.px-0.mx-4.shadow-none.border-radius-xl(data-scroll='true')
         .container-fluid.py-1.px-3

@@ -14,11 +14,11 @@ block sideBar
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') dashboard 
                         span(class='nav-link-text ms-1') Digital Desk
-                li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/physicalDesk')
-                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') table_view 
-                        span(class='nav-link-text ms-1') Physical Desk
+                //- li(class='nav-item')
+                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/physicalDesk')
+                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                //-             i(class='material-icons opacity-10') table_view 
+                //-         span(class='nav-link-text ms-1') Physical Desk
                 li(class='nav-item')
                     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/trackFiles')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
@@ -28,12 +28,17 @@ block sideBar
                     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/createUser')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') person_add 
-                        span(class='nav-link-text ms-1') Create a User
-                li(class='nav-item')
-                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
+                        span(class='nav-link-text ms-1') Create/Add
+                                li(class='nav-item')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/logDesk')
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                            i(class='material-icons opacity-10') swap_horiz
-                        span(class='nav-link-text ms-1') Handle Transfer
+                            i(class='material-icons opacity-10') receipt_long 
+                        span(class='nav-link-text ms-1') log/Record
+                //- li(class='nav-item')
+                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
+                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                //-             i(class='material-icons opacity-10') swap_horiz
+                //-         span(class='nav-link-text ms-1') Handle Transfer
 block heading 
     include _header
 block content
