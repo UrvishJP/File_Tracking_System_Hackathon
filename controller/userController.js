@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 exports.Login = async (req,res,next) => {
 try {
-    console.log('req.body');
+    // console.log('req.body');
     const {email,password,role} = req.body
     if(!email || !password ){
         res.status(200).json({
