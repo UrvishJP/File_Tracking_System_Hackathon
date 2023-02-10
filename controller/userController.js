@@ -1,5 +1,7 @@
+const Log=require('./../modal/logModel');
 const User=require('./../modal/userModel');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+
 
 exports.Login = async (req,res,next) => {
 try {
@@ -162,6 +164,7 @@ exports.getAllUsers=async(req,res)=>
         res.json(error)
     }
 }
+
 exports.updateUser = async(req,res,next)=>{
     var currentUser = req.body.currentUserId;
     var newUser = req.body.newUserId;
@@ -181,4 +184,23 @@ exports.updateUser = async(req,res,next)=>{
     res.status(200).json({
         status:"Success"
     })
+}
+
+exports.getMyLogs=async(req,res)=>{
+    try{
+        const logs=await Log.find({$expr:{$eq:[{$month:'$time'},`${req.query.month}`]},userId:`${req.body.userId}`});
+        // console.log(logs.length);
+        res.status(200).json({
+            status:'Success',
+            logs:logs,
+            length:logs.length
+        });
+    }
+    catch(err){
+        res.status(400).json({
+            status:"fail"
+        })
+    }
+    // console.log(req.query.month);
+    // console.log(logs);
 }
