@@ -61,6 +61,8 @@ const addDesk=async (deskOffice,deskDesignation,deskBranch)=>{
 
 const assignDesk=async (assignDeskUserId,assignDeskDeskId)=>{
     try{
+        // alert('in desk assign');
+        alert(assignDeskDeskId)
         const res= await axios({
             method: 'PATCH',
             url: `/api/desks/assignUserToDesk/${assignDeskDeskId}`,
@@ -72,15 +74,16 @@ const assignDesk=async (assignDeskUserId,assignDeskDeskId)=>{
         // var name=res.data.data.newUser.name
         // console.log(res);
         // console.log(name);
-        if(res.data.status==='Success'){
-            alert(`an employee of UserId ${res.data.data.user} has been assigned thw desk of ${res.data.data.designation}`);
-            window.setTimeout(()=>{
-                    location.assign('/adminDashboard/createUser');
-            },1);  
-        }
-        else{
-            alert(res.data.messege);
-        }
+        // if(res.data.status==='Success'){
+        //     alert(`an employee of has been asssigned the desk`);
+        //     window.setTimeout(()=>{
+        //             location.assign('/adminDashboard/createUser');
+        //     },1);  
+        // }
+        // else{
+        //     alert(res.data.messege);
+        // }
+        alert("the user has been assigned the desk");
     }
     catch(err){
         alert('error from server');
@@ -106,7 +109,11 @@ document.querySelector('.addNewDeskForm').addEventListener('submit',e=>{
 
 document.querySelector('.assignDeskForm').addEventListener('submit',e=>{
     e.preventDefault();
-    const assignDeskUserId= document.getElementById('assignDeskUserId').value;
-    const assignDeskDeskId=document.getElementById('assignDeskDeskId').value;
-    assignDesk(assignDeskUserId,assignDeskDeskId);
+    const assignDeskUserId= document.getElementById('nextUserId').value;
+    const assignDeskDeskId=document.getElementById('deskId').value;
+    const array1=assignDeskUserId.split(" - ");
+    const array2=assignDeskDeskId.split(" - ");
+    const UserName=array1[0];
+    const deskName=array2[0];
+    assignDesk(UserName,deskName);
 })

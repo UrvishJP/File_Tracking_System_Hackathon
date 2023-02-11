@@ -26,6 +26,11 @@ const deskSchema=new mongoose.Schema(
         {
             type: mongoose.Schema.ObjectId,
             ref:'User'
+        },
+
+        userAssigned:{
+            type:Boolean,
+            default:false
         }
     }
 )

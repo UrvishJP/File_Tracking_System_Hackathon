@@ -245,9 +245,9 @@ exports.sendFile=async(req,res)=>{
         const user2=await User.find({name:req.body.nextUserName}).populate({
             path:'currentDesk'
         })
-        // console.log(user2);
+        console.log(user2);
         var previousDesk=user1.currentDesk;
-        var nextDesk=user2.currentDesk;
+        var nextDesk=user2[0].currentDesk;
         // console.log(user2);
         var fileToBeUpdated=req.params.id;
 
@@ -262,22 +262,25 @@ exports.sendFile=async(req,res)=>{
             dateOfReceiving:fileInfo.dateOfLastForward,
             dateOfForwarding:currentDate
         }
+        // console.log("jhbhjbjbh");
         const newTimeline = await Timeline.create(data);
         fileInfo.timeline.push(newTimeline.id);
         var updatedTimeline=fileInfo.timeline;
         // console.log(updatedTimeline);
-
+        // console.log(user2[0].currentDesk.id);
          // 4. update the file data
         var updatingData={
-            currentDesk:user2.currentDesk,
+            currentDesk:user2[0].currentDesk.id,
             previousDesk:user1.currentDesk,
-            currentBranch:user2.currentDesk.branch,
-            currentOffice:user2.currentDesk.office,
-            currentUserId:user2.id,
-            currentUserName:user2.name,
+            currentBranch:user2[0].currentDesk.branch,
+            currentOffice:user2[0].currentDesk.office,
+            currentUserId:user2[0].id,
+            currentUserName:user2[0].name,
             dateOfLastForward:currentDate,
             timeline:updatedTimeline
         }
+        // console.log("cwdvbjicasicb");
+        // console.log(updatingData);
 
         const doc = await File.findByIdAndUpdate(req.body.fileId, updatingData, {
             new: true,

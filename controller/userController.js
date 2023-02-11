@@ -1,5 +1,6 @@
 const Log=require('./../modal/logModel');
 const User=require('./../modal/userModel');
+const Desk=require('./../modal/deskModel');
 const jwt = require('jsonwebtoken');
 
 
@@ -20,7 +21,7 @@ try {
     if(isuser.onDesk===false){
         res.status(200).json({
             status:"fail",
-            messege:"You are no more the Desk"
+            messege:"You are no more on the Desk"
         })
         return next();
     }
@@ -130,23 +131,39 @@ exports.createNewUser=async (req,res)=>
     }
 }
 
-exports.assignDesk=async(req,res)=>{
+exports.assignDesk=async(req,res,next)=>{
     try{
-        // console.log(req.params.id);
+        // console.log("in user controller")
+        // console.log(req.params.name);
         // console.log(req.body);
-        var body={currentDesk:`${req.params.id}`,onDesk:true};
-        var userId=req.body.user;
-        // console.log(userId);
-        // console.log(body);
+        var user=await User.find({name:req.body.user});
+        const desk=await Desk.find({designation:req.params.name});
+        var userId=user[0].id;
+        var deskId=desk[0].id;
+
+        var body={currentDesk:`${deskId}`,onDesk:true};
+        // var userId=user[0].id;
+        // var deskId=desk[0].id;
+        // // console.log(userId);
+        // console.log('in userControl userId up and deskId down');
+        // console.log(deskId);
         const doc= await User.findByIdAndUpdate(userId,body,
             {
                 new:true,
                 runValidators:true
             });
+            next();
+        res.status(200).json({
+            status:"Success",
+            data:doc
+        })
     }
     catch(error)
     {
-        console.log(err);
+        res.status(400).json({
+            status:"fail",
+            error:error
+        })
     } 
 }
 

@@ -160,6 +160,7 @@ exports.getCreateUserDesk=async (req,res)=>{
         const desks=await Desk.find({
             userAssigned:false
         });
+        // console.log(desks);
         res.status(200).render('createUserDesk',{
             title:'Admin Dashboard DDO',
             users:users,

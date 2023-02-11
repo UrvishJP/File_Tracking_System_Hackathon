@@ -24,16 +24,26 @@ exports.getAllDesks=async(req,res)=>
     }
 }
 exports.assignDesk = async(req,res,next) =>{
-    console.log(req.body);
+    // console.log(req.body);
+    // console.log("desk controller body up and params down");
+    // console.log(req.params.name);
 try{
-    const data = await Desk.findByIdAndUpdate(req.params.id,{user:req.body.user},{
+    var user=await User.find({name:req.body.user});
+    const desk=await Desk.find({designation:req.params.name});
+    var userId=user[0].id;
+    var deskId=desk[0].id;
+
+    // console.log(userId);
+    // console.log('in deskControl userId up and deskId down');
+    // console.log(deskId);
+
+    const data = await Desk.findByIdAndUpdate(deskId,{
+        user:userId,
+        userAssigned:true
+    },{
         new:true
     })
-res.status(200).json({
-    status:"Success",
-    data
-})
-next();
+    next();
 }
 catch(err){
     res.status(400).json({
@@ -51,7 +61,7 @@ exports.updateDesk=async (req,res,next)=>
 {
     try{
         //console.log(req.body);
-        const doc= await Desk.findByIdAndUpdate(req.body.deskId,{user:req.body.newUserId},
+        const doc= await Desk.findByIdAndUpdate(req.body.deskId,{user:req.body.newUserId,userAssigned:true},
             {
                 new:true,
                 runValidators:true

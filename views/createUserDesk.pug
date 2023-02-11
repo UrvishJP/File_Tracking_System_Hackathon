@@ -34,11 +34,11 @@ block sideBar
                         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
                             i(class='material-icons opacity-10') receipt_long 
                         span(class='nav-link-text ms-1') log/Record
-                //- li(class='nav-item')
-                //-     a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
-                //-         div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
-                //-             i(class='material-icons opacity-10') swap_horiz
-                //-         span(class='nav-link-text ms-1') Handle Transfer
+                li(class='nav-item')
+                    a(class='nav-link text-white active bg-gradient-dark' href='/adminDashboard/handleTransfer')
+                        div(class='text-white text-center me-2 d-flex align-items-center justify-content-center')
+                            i(class='material-icons opacity-10') swap_horiz
+                        span(class='nav-link-text ms-1') Handle Transfer
 block heading 
     include _header
 block content
@@ -157,13 +157,13 @@ block content
                                 input#nextUserId.form-control(list='datalistOptions' placeholder='search the user here.......')
                                 datalist#datalistOptions
                                     each user in users
-                                        option(value=`${user.currentDesk.designation} - ${user.currentDesk.office} - ${user.name}`)
+                                        option(value=`${user.name} - ${user.email}`)
                             .col
-                                label.form-label(for='exampleDataList') Select the Desk
-                                input#nextUserId.form-control(list='datalistOptions' placeholder='search the desk here.......')
-                                datalist#datalistOptions
+                                label.form-label(for='deskId') Select the Desk
+                                input#deskId.form-control(list='datalistOptions2' placeholder='search the desk here.......')
+                                datalist#datalistOptions2
                                     each desk in desks
-                                        option(value=`${user.currentDesk.designation} - ${user.currentDesk.office} - ${user.name}`)
+                                        option(value=`${desk.designation} - ${desk.office} - ${desk.branch}`)
                     .card-footer.p-2
                         button.btn.bg-gradient-primary.mb-0(type='submit') Assign
     
